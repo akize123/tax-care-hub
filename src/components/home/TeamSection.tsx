@@ -1,0 +1,67 @@
+import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
+import taxTeam from "@/assets/tax-team.jpg";
+
+const team = [
+  { name: "Steven M.", role: "Founder & CEO", desc: "Tax policy expert with 10+ years of experience." },
+  { name: "Grace K.", role: "Head of Operations", desc: "Manages client relations and service delivery." },
+  { name: "Jean P.", role: "Senior Tax Advisor", desc: "Specialized in corporate tax compliance." },
+  { name: "Aline N.", role: "Client Support Lead", desc: "Ensures every client gets personalized help." },
+];
+
+const TeamSection = () => (
+  <section className="section-padding bg-secondary">
+    <div className="container-narrow">
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+        {/* Image on the left */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={taxTeam} alt="Tax Care team working together" className="rounded-lg shadow-lg w-full object-cover aspect-[4/3]" />
+        </motion.div>
+
+        {/* Text on the right */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Our Team</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Meet The People Behind Tax Care</h2>
+          <p className="text-muted-foreground leading-relaxed">
+            Our dedicated team of tax professionals brings years of combined experience in tax policy, compliance, and client service to ensure you get the best support possible.
+          </p>
+        </motion.div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.map((member, i) => (
+          <motion.div
+            key={member.name}
+            custom={i}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="bg-card rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
+          >
+            <div className="w-20 h-20 mx-auto rounded-full gradient-navy flex items-center justify-center mb-4">
+              <span className="text-primary-foreground font-display font-bold text-xl">
+                {member.name.split(" ").map(n => n[0]).join("")}
+              </span>
+            </div>
+            <h3 className="font-display text-lg font-semibold">{member.name}</h3>
+            <p className="text-accent text-sm font-medium mb-2">{member.role}</p>
+            <p className="text-muted-foreground text-sm">{member.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+export default TeamSection;
