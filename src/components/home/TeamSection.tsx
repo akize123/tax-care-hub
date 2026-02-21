@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Users } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import taxTeam from "@/assets/tax-team.jpg";
 
@@ -10,9 +11,9 @@ const team = [
 ];
 
 const TeamSection = () => (
-  <section className="section-padding bg-secondary">
+  <section className="section-padding bg-card">
     <div className="container-narrow">
-      <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+      <div className="grid md:grid-cols-2 gap-12 items-center mb-14">
         {/* Image on the left */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -30,11 +31,14 @@ const TeamSection = () => (
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">👥 Our Team</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+          <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-1.5 rounded-full mb-4">
+            <Users size={16} className="text-accent" />
+            <span className="text-accent font-semibold uppercase tracking-widest text-xs">Our Team</span>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-3">
             Meet The People Behind <span className="text-gradient-gold">Tax Care</span>
           </h2>
-          <div className="w-16 h-1 gradient-gold mb-4 rounded-full" />
+          <div className="w-16 h-1 gradient-gold mb-5 rounded-full" />
           <p className="text-muted-foreground leading-relaxed">
             Our dedicated team of tax professionals brings years of combined experience in tax policy, compliance, and client service to ensure you get the best support possible.
           </p>
@@ -50,7 +54,7 @@ const TeamSection = () => (
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="bg-card rounded-lg p-6 text-center hover:shadow-lg transition-shadow"
+            className="bg-secondary rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
           >
             <div className="w-20 h-20 mx-auto rounded-full gradient-navy flex items-center justify-center mb-4">
               <span className="text-primary-foreground font-display font-bold text-xl">

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, AlertTriangle } from "lucide-react";
+import { MapPin, AlertTriangle, Send, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Textarea } from "@/components/ui/textarea";
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/home/HeroSection";
 import ObjectivesSection from "@/components/home/ObjectivesSection";
@@ -13,16 +13,22 @@ import TeamSection from "@/components/home/TeamSection";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [comment, setComment] = useState("");
   const { toast } = useToast();
   const [alertVisible, setAlertVisible] = useState(true);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    window.location.href = `mailto:akizeisrael123@gmail.com?subject=Newsletter Subscription&body=New subscriber: ${email}`;
-    toast({ title: "Subscribed!", description: "Thank you for subscribing to our newsletter." });
+    if (!fullName || !email || !comment) return;
+    const subject = encodeURIComponent(`Message from ${fullName}`);
+    const body = encodeURIComponent(`Name: ${fullName}\nEmail: ${email}\n\nMessage:\n${comment}`);
+    window.location.href = `mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`;
+    toast({ title: "Message Sent!", description: "Thank you for reaching out. We'll get back to you soon." });
+    setFullName("");
     setEmail("");
+    setComment("");
   };
 
   return (
@@ -48,7 +54,7 @@ const Index = () => {
       <TeamSection />
 
       {/* Map */}
-      <section className="section-padding bg-card">
+      <section className="section-padding bg-secondary">
         <div className="container-narrow">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -77,35 +83,85 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Newsletter */}
+      {/* Contact / Stay Updated */}
       <section className="section-padding gradient-navy text-primary-foreground">
-        <div className="container-narrow text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-primary-foreground/60 max-w-lg mx-auto mb-8">
-              Subscribe to our newsletter for the latest tax updates, RRA news, and exclusive tips.
-            </p>
-            <form
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-              onSubmit={handleSubscribe}
+        <div className="container-narrow">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left - text */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
-              />
-              <Button type="submit" className="gradient-gold text-primary font-semibold px-8 hover:opacity-90 shrink-0">
-                Subscribe
-              </Button>
-            </form>
-          </motion.div>
+              <div className="inline-flex items-center gap-2 bg-primary-foreground/10 px-4 py-1.5 rounded-full mb-4">
+                <Mail size={16} className="text-accent" />
+                <span className="text-accent font-semibold uppercase tracking-widest text-xs">Stay Updated</span>
+              </div>
+              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+                Get In <span className="text-gradient-gold">Touch</span>
+              </h2>
+              <div className="w-16 h-1 gradient-gold mb-5 rounded-full" />
+              <p className="text-primary-foreground/60 leading-relaxed mb-4">
+                Have a question about tax filing? Want to stay updated on RRA news and deadlines? Send us a message and we'll get back to you promptly.
+              </p>
+              <div className="flex items-center gap-3 text-primary-foreground/50 text-sm">
+                <Send size={14} className="text-accent" />
+                <span>akizeisrael123@gmail.com</span>
+              </div>
+            </motion.div>
+
+            {/* Right - form */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <form
+                className="space-y-4 bg-primary-foreground/5 p-6 rounded-xl border border-primary-foreground/10"
+                onSubmit={handleSubscribe}
+              >
+                <div>
+                  <label className="text-sm font-medium text-primary-foreground/70 mb-1.5 block">Full Name</label>
+                  <Input
+                    type="text"
+                    placeholder="Enter your full name"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    required
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-primary-foreground/70 mb-1.5 block">Email Address</label>
+                  <Input
+                    type="email"
+                    placeholder="Enter your email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
+                  />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-primary-foreground/70 mb-1.5 block">Your Message</label>
+                  <Textarea
+                    placeholder="Write your message or comment..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    required
+                    rows={4}
+                    className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 resize-none"
+                  />
+                </div>
+                <Button type="submit" className="w-full gradient-gold text-primary font-semibold py-5 hover:opacity-90">
+                  <Send size={16} className="mr-2" />
+                  Send Message
+                </Button>
+              </form>
+            </motion.div>
+          </div>
         </div>
       </section>
     </Layout>
