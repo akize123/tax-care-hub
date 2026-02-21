@@ -29,15 +29,15 @@ const Index = () => {
     <Layout>
       {/* RRA Deadline Alert */}
       {alertVisible && (
-        <div className="bg-destructive/10 border-b border-destructive/20">
-          <div className="container-narrow py-3 flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <AlertTriangle size={20} className="text-destructive shrink-0" />
-              <p className="text-sm font-medium text-destructive">
-                <strong>RRA Tax Deadline Reminder:</strong> Annual tax declarations must be submitted by <strong>March 31, 2026</strong>. Don't wait — book now to avoid penalties!
+        <div className="relative overflow-hidden animate-shine border-b border-accent/30" style={{ background: 'linear-gradient(90deg, hsl(var(--navy)) 0%, hsl(var(--gold)) 30%, hsl(var(--navy)) 50%, hsl(var(--gold)) 70%, hsl(var(--navy)) 100%)', backgroundSize: '200% 100%' }}>
+          <div className="py-3 flex items-center justify-center relative">
+            <div className="animate-marquee whitespace-nowrap flex items-center gap-3">
+              <AlertTriangle size={18} className="text-accent shrink-0" />
+              <p className="text-sm font-semibold text-primary-foreground">
+                📢 <strong>RRA Tax Deadline Reminder:</strong> Annual tax declarations must be submitted by <strong>March 31, 2026</strong>. Don't wait — book now to avoid penalties! 📢
               </p>
             </div>
-            <button onClick={() => setAlertVisible(false)} className="text-destructive/60 hover:text-destructive text-lg font-bold shrink-0">✕</button>
+            <button onClick={() => setAlertVisible(false)} className="absolute right-4 text-primary-foreground/60 hover:text-primary-foreground text-lg font-bold shrink-0 z-10 bg-primary/50 rounded-full w-6 h-6 flex items-center justify-center">✕</button>
           </div>
         </div>
       )}

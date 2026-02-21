@@ -30,8 +30,11 @@ const TeamSection = () => (
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Our Team</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">Meet The People Behind Tax Care</h2>
+          <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">👥 Our Team</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
+            Meet The People Behind <span className="text-gradient-gold">Tax Care</span>
+          </h2>
+          <div className="w-16 h-1 gradient-gold mb-4 rounded-full" />
           <p className="text-muted-foreground leading-relaxed">
             Our dedicated team of tax professionals brings years of combined experience in tax policy, compliance, and client service to ensure you get the best support possible.
           </p>

@@ -14,10 +14,19 @@ const partners = [
 const PartnersSection = () => (
   <section className="section-padding bg-card">
     <div className="container-narrow">
-      <div className="text-center mb-10">
-        <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">Trusted Partnerships</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold">Organizations That Trust Us</h2>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">🤝 Trusted Partnerships</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold">
+          Organizations That <span className="text-gradient-gold">Trust Us</span>
+        </h2>
+        <p className="text-muted-foreground mt-3 max-w-lg mx-auto">We collaborate with Rwanda's leading institutions to deliver seamless tax services.</p>
+        <div className="w-20 h-1 gradient-gold mx-auto mt-4 rounded-full" />
+      </motion.div>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {partners.map((partner, i) => (
           <motion.div
