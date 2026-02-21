@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Calculator, Shield } from "lucide-react";
+import { FileText, Calculator, Shield, Target } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import taxDocuments from "@/assets/tax-documents.jpg";
 
@@ -12,37 +12,33 @@ const objectives = [
 const ObjectivesSection = () => (
   <section className="section-padding bg-card">
     <div className="container-narrow">
-      {/* Section heading centered */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-12"
-      >
-        <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">What We Do</p>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Our Objectives</h2>
-        <div className="w-20 h-1 gradient-gold mx-auto mt-4 rounded-full" />
-      </motion.div>
-
-      <div className="grid md:grid-cols-2 gap-12 items-stretch">
+      <div className="grid md:grid-cols-2 gap-12 items-center">
         {/* Image on the left */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="h-full"
         >
-          <img src={taxDocuments} alt="Tax documents and filing" className="rounded-lg shadow-lg w-full h-full object-cover" />
+          <img src={taxDocuments} alt="Tax documents and filing" className="rounded-lg shadow-lg w-full object-cover aspect-[4/5]" />
         </motion.div>
 
-        {/* Text on the right */}
+        {/* Content on the right */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
+          <div className="flex items-center gap-3 mb-2">
+            <Target size={20} className="text-accent" />
+            <p className="text-accent font-semibold uppercase tracking-widest text-sm">What We Do</p>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+            Our <span className="text-gradient-gold">Objectives</span>
+          </h2>
+          <div className="w-16 h-1 gradient-gold rounded-full mb-8" />
+
           <div className="space-y-6">
             {objectives.map((item, i) => (
               <motion.div
