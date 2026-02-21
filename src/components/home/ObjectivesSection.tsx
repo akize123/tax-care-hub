@@ -12,6 +12,18 @@ const objectives = [
 const ObjectivesSection = () => (
   <section className="section-padding bg-card">
     <div className="container-narrow">
+      {/* Section heading centered */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-12"
+      >
+        <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">What We Do</p>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">Our Objectives</h2>
+        <div className="w-20 h-1 gradient-gold mx-auto mt-4 rounded-full" />
+      </motion.div>
+
       <div className="grid md:grid-cols-2 gap-12 items-stretch">
         {/* Image on the left */}
         <motion.div
@@ -31,8 +43,6 @@ const ObjectivesSection = () => (
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">What We Do</p>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-8">Our Objectives</h2>
           <div className="space-y-6">
             {objectives.map((item, i) => (
               <motion.div
