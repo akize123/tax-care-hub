@@ -12,15 +12,16 @@ const objectives = [
 const ObjectivesSection = () => (
   <section className="section-padding bg-card">
     <div className="container-narrow">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-12 items-stretch">
         {/* Image on the left */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="h-full"
         >
-          <img src={taxDocuments} alt="Tax documents and filing" className="rounded-lg shadow-lg w-full object-cover aspect-[4/3]" />
+          <img src={taxDocuments} alt="Tax documents and filing" className="rounded-lg shadow-lg w-full h-full object-cover" />
         </motion.div>
 
         {/* Text on the right */}

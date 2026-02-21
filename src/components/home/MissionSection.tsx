@@ -5,7 +5,7 @@ import taxConsultation from "@/assets/tax-consultation.jpg";
 const MissionSection = () => (
   <section className="section-padding gradient-navy text-primary-foreground">
     <div className="container-narrow">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-12 items-stretch">
         {/* Text on the left */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -47,8 +47,9 @@ const MissionSection = () => (
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="h-full"
         >
-          <img src={taxConsultation} alt="Tax consultation meeting" className="rounded-lg shadow-lg w-full object-cover aspect-[4/3]" />
+          <img src={taxConsultation} alt="Tax consultation meeting" className="rounded-lg shadow-lg w-full h-full object-cover" />
         </motion.div>
       </div>
     </div>

@@ -1,17 +1,46 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin } from "lucide-react";
+import { MapPin, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/home/HeroSection";
 import ObjectivesSection from "@/components/home/ObjectivesSection";
 import MissionSection from "@/components/home/MissionSection";
 import PartnersSection from "@/components/home/PartnersSection";
 import TeamSection from "@/components/home/TeamSection";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+  const [alertVisible, setAlertVisible] = useState(true);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    window.location.href = `mailto:akizeisrael123@gmail.com?subject=Newsletter Subscription&body=New subscriber: ${email}`;
+    toast({ title: "Subscribed!", description: "Thank you for subscribing to our newsletter." });
+    setEmail("");
+  };
+
   return (
     <Layout>
+      {/* RRA Deadline Alert */}
+      {alertVisible && (
+        <div className="bg-destructive/10 border-b border-destructive/20">
+          <div className="container-narrow py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <AlertTriangle size={20} className="text-destructive shrink-0" />
+              <p className="text-sm font-medium text-destructive">
+                <strong>RRA Tax Deadline Reminder:</strong> Annual tax declarations must be submitted by <strong>March 31, 2026</strong>. Don't wait — book now to avoid penalties!
+              </p>
+            </div>
+            <button onClick={() => setAlertVisible(false)} className="text-destructive/60 hover:text-destructive text-lg font-bold shrink-0">✕</button>
+          </div>
+        </div>
+      )}
       <HeroSection />
       <ObjectivesSection />
       <MissionSection />
@@ -62,14 +91,17 @@ const Index = () => {
             </p>
             <form
               className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubscribe}
             >
               <Input
                 type="email"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
                 className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40"
               />
-              <Button className="gradient-gold text-primary font-semibold px-8 hover:opacity-90 shrink-0">
+              <Button type="submit" className="gradient-gold text-primary font-semibold px-8 hover:opacity-90 shrink-0">
                 Subscribe
               </Button>
             </form>
