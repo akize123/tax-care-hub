@@ -5,10 +5,10 @@ import taxTeam from "@/assets/tax-team.jpg";
 import stevenPhoto from "@/assets/steven-ceo.jpeg";
 
 const team = [
-  { name: "Steven M.", role: "Founder & CEO", desc: "Tax policy expert with 10+ years of experience." },
-  { name: "Grace K.", role: "Head of Operations", desc: "Manages client relations and service delivery." },
-  { name: "Jean P.", role: "Senior Tax Advisor", desc: "Specialized in corporate tax compliance." },
-  { name: "Aline N.", role: "Client Support Lead", desc: "Ensures every client gets personalized help." },
+  { name: "Steven M.", role: "Founder & CEO", desc: "Tax policy expert with 10+ years of experience.", photo: stevenPhoto },
+  { name: "Grace K.", role: "Head of Operations", desc: "Manages client relations and service delivery.", photo: null },
+  { name: "Jean P.", role: "Senior Tax Advisor", desc: "Specialized in corporate tax compliance.", photo: null },
+  { name: "Aline N.", role: "Client Support Lead", desc: "Ensures every client gets personalized help.", photo: null },
 ];
 
 const TeamSection = () => (
