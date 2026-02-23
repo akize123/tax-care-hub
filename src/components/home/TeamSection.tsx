@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Users } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import taxTeam from "@/assets/tax-team.jpg";
+import stevenPhoto from "@/assets/steven-ceo.jpeg";
 
 const team = [
   { name: "Steven M.", role: "Founder & CEO", desc: "Tax policy expert with 10+ years of experience." },
