@@ -19,9 +19,9 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-border/10">
-      <div className="container-narrow flex items-center justify-between h-20 px-4 md:px-8">
+      <div className="container-narrow flex items-center justify-between h-24 px-4 md:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <img src={taxcareLogo} alt="Tax Care Services Center" className="h-14 w-auto object-contain" />
+          <img src={taxcareLogo} alt="Tax Care Services Center" className="h-20 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav */}
