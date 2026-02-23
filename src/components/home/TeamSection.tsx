@@ -57,11 +57,15 @@ const TeamSection = () => (
             variants={fadeUp}
             className="bg-secondary rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-border/50 hover:border-accent/30"
           >
-            <div className="w-20 h-20 mx-auto rounded-full gradient-navy flex items-center justify-center mb-4">
-              <span className="text-primary-foreground font-display font-bold text-xl">
-                {member.name.split(" ").map(n => n[0]).join("")}
-              </span>
-            </div>
+            {member.photo ? (
+              <img src={member.photo} alt={member.name} className="w-20 h-20 mx-auto rounded-full object-cover mb-4 border-2 border-accent/30" />
+            ) : (
+              <div className="w-20 h-20 mx-auto rounded-full gradient-navy flex items-center justify-center mb-4">
+                <span className="text-primary-foreground font-display font-bold text-xl">
+                  {member.name.split(" ").map(n => n[0]).join("")}
+                </span>
+              </div>
+            )}
             <h3 className="font-display text-lg font-semibold">{member.name}</h3>
             <p className="text-accent text-sm font-medium mb-2">{member.role}</p>
             <p className="text-muted-foreground text-sm">{member.desc}</p>
