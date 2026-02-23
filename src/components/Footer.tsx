@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import taxcareLogo from "@/assets/taxcare-logo.jpeg";
 
 const Footer = () => {
   return (
@@ -9,10 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full gradient-gold flex items-center justify-center">
-                <span className="font-display font-bold text-primary text-sm">TC</span>
-              </div>
-              <span className="font-display font-bold text-lg">Tax Care</span>
+              <img src={taxcareLogo} alt="Tax Care Services Center" className="h-10 w-auto object-contain" />
             </div>
             <p className="text-primary-foreground/60 text-sm leading-relaxed">
               Your trusted partner in tax declaration services. We simplify the complex so you can focus on what matters.
