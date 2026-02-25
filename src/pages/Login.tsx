@@ -1,14 +1,48 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Mail, Lock, User, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { signIn, signUp } = useAuth();
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    if (isSignup) {
+      const { error } = await signUp(email, password, fullName);
+      if (error) {
+        toast({ title: "Sign Up Failed", description: error.message, variant: "destructive" });
+      } else {
+        toast({ title: "Account Created!", description: "You can now log in." });
+        setIsSignup(false);
+        setPassword("");
+      }
+    } else {
+      const { error } = await signIn(email, password);
+      if (error) {
+        toast({ title: "Login Failed", description: error.message, variant: "destructive" });
+      } else {
+        toast({ title: "Welcome back!" });
+        navigate("/dashboard");
+      }
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen flex">
@@ -52,13 +86,13 @@ const Login = () => {
               : "Log in to access your dashboard."}
           </p>
 
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {isSignup && (
               <div>
                 <Label htmlFor="login-name">Full Name</Label>
                 <div className="relative">
                   <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                  <Input id="login-name" placeholder="John Doe" className="pl-10" />
+                  <Input id="login-name" placeholder="John Doe" className="pl-10" value={fullName} onChange={(e) => setFullName(e.target.value)} required />
                 </div>
               </div>
             )}
@@ -66,7 +100,7 @@ const Login = () => {
               <Label htmlFor="login-email">Email Address</Label>
               <div className="relative">
                 <Mail size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                <Input id="login-email" type="email" placeholder="you@example.com" className="pl-10" />
+                <Input id="login-email" type="email" placeholder="you@example.com" className="pl-10" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
             </div>
             <div>
@@ -78,6 +112,9 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="pl-10 pr-10"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <button
                   type="button"
@@ -89,8 +126,8 @@ const Login = () => {
               </div>
             </div>
 
-            <Button type="submit" className="w-full gradient-gold text-primary font-semibold py-6 hover:opacity-90">
-              {isSignup ? "Sign Up" : "Log In"} <ArrowRight size={16} className="ml-2" />
+            <Button type="submit" disabled={loading} className="w-full gradient-gold text-primary font-semibold py-6 hover:opacity-90">
+              {loading ? "Please wait..." : isSignup ? "Sign Up" : "Log In"} {!loading && <ArrowRight size={16} className="ml-2" />}
             </Button>
           </form>
 

@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import taxcareLogo from "@/assets/taxcare-logo.jpeg";
+import { useAuth } from "@/hooks/useAuth";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -16,6 +17,7 @@ const navLinks = [
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-border/10">
@@ -39,12 +41,21 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/login"
-            className="ml-4 px-6 py-2.5 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
-          >
-            Login
-          </Link>
+          {user ? (
+            <Link
+              to="/dashboard"
+              className="ml-4 px-6 py-2.5 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="ml-4 px-6 py-2.5 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+            >
+              Login
+            </Link>
+          )}
         </nav>
 
         {/* Mobile Toggle */}
@@ -82,11 +93,11 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/login"
+                to={user ? "/dashboard" : "/login"}
                 onClick={() => setOpen(false)}
                 className="mt-2 px-5 py-3 rounded-md text-sm font-semibold gradient-gold text-primary text-center"
               >
-                Login
+                {user ? "Dashboard" : "Login"}
               </Link>
             </nav>
           </motion.div>
