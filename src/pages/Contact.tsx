@@ -16,10 +16,13 @@ const countries = [
 const Contact = () => {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
-  const whatsappNumber = "250788000000";
+  const whatsappNumber = "250780521244";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Contact from ${form.firstName} ${form.lastName}`);
+    const body = encodeURIComponent(`Name: ${form.firstName} ${form.lastName}\nEmail: ${form.email}\nPhone: ${form.phone}\nCountry: ${form.country}\n\nMessage:\n${form.message}`);
+    window.location.href = `mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 4000);
   };
@@ -75,11 +78,11 @@ const Contact = () => {
                   </li>
                   <li className="flex items-start gap-3">
                     <Phone size={18} className="text-accent mt-0.5 shrink-0" />
-                    <span className="text-muted-foreground">+250 788 000 000</span>
+                    <span className="text-muted-foreground">+250 780 521 244</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <Mail size={18} className="text-accent mt-0.5 shrink-0" />
-                    <span className="text-muted-foreground">info@taxcare.rw</span>
+                    <span className="text-muted-foreground">akizeisrael123@gmail.com</span>
                   </li>
                 </ul>
               </div>
