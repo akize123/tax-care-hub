@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { FileText, Calculator, Shield, Target, Users, TrendingUp, Clock } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import taxDocuments from "@/assets/tax-documents.jpg";
