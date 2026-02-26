@@ -21,18 +21,18 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-md border-b border-border/10">
-      <div className="flex items-center justify-between h-28 px-4 md:px-8">
-        <Link to="/" className="flex items-center">
+      <div className="flex items-center h-28 px-4 md:px-8 gap-6">
+        <Link to="/" className="flex items-center shrink-0">
           <img src={taxcareLogo} alt="Tax Care Services Center" className="h-24 w-auto object-contain" />
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`px-4 py-2.5 rounded-md text-base font-medium transition-colors ${
+              className={`px-4 py-2.5 rounded-md text-lg font-medium transition-colors ${
                 location.pathname === link.to
                   ? "text-accent"
                   : "text-primary-foreground/70 hover:text-primary-foreground"
@@ -44,14 +44,14 @@ const Navbar = () => {
           {user ? (
             <Link
               to="/dashboard"
-              className="ml-4 px-6 py-2.5 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+              className="ml-3 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
             >
               Dashboard
             </Link>
           ) : (
             <Link
               to="/login"
-              className="ml-4 px-6 py-2.5 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+              className="ml-3 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
             >
               Login
             </Link>
@@ -61,7 +61,7 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-primary-foreground"
+          className="md:hidden text-primary-foreground ml-auto"
           aria-label="Toggle menu"
         >
           {open ? <X size={24} /> : <Menu size={24} />}
