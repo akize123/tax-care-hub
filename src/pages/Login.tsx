@@ -25,7 +25,17 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
 
-    if (isSignup) {
+    if (isForgotPassword) {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+      if (error) {
+        toast({ title: "Error", description: error.message, variant: "destructive" });
+      } else {
+        toast({ title: "Check your email", description: "We sent you a password reset link." });
+        setIsForgotPassword(false);
+      }
+    } else if (isSignup) {
       const { error } = await signUp(email, password, fullName);
       if (error) {
         toast({ title: "Sign Up Failed", description: error.message, variant: "destructive" });
@@ -80,10 +90,12 @@ const Login = () => {
           </Link>
 
           <h2 className="font-display text-3xl font-bold mb-2">
-            {isSignup ? "Create Account" : "Welcome Back"}
+            {isForgotPassword ? "Reset Password" : isSignup ? "Create Account" : "Welcome Back"}
           </h2>
           <p className="text-muted-foreground mb-8">
-            {isSignup
+            {isForgotPassword
+              ? "Enter your email and we'll send you a reset link."
+              : isSignup
               ? "Sign up to start using Tax Care services."
               : "Log in to access your dashboard."}
           </p>
