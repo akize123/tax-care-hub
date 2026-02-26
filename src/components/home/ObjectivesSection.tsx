@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FileText, Calculator, Shield, Target } from "lucide-react";
+import { FileText, Calculator, Shield, Target, Users, TrendingUp, Clock } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import taxDocuments from "@/assets/tax-documents.jpg";
 
@@ -7,6 +7,9 @@ const objectives = [
   { icon: FileText, title: "Simplified Filing", desc: "We break down the complex tax declaration process into simple, manageable steps handled entirely by our experts." },
   { icon: Calculator, title: "Accurate Compliance", desc: "Stay fully compliant with Rwanda Revenue Authority regulations without worrying about errors or penalties." },
   { icon: Shield, title: "Trusted & Secure", desc: "Your documents and personal information are handled with the highest level of security and confidentiality." },
+  { icon: Users, title: "Client-Centered Support", desc: "We provide dedicated, personalized assistance to every client, ensuring your unique tax needs are fully understood and met." },
+  { icon: TrendingUp, title: "Financial Growth", desc: "Beyond compliance, we help you identify tax-saving opportunities that contribute to your business's long-term financial growth." },
+  { icon: Clock, title: "Timely Delivery", desc: "We guarantee that all filings and declarations are submitted well before deadlines, giving you peace of mind year-round." },
 ];
 
 const ObjectivesSection = () => (
