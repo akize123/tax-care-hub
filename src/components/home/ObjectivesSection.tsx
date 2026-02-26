@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { FileText, Calculator, Shield, Target, Users, TrendingUp, Clock } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import taxDocuments from "@/assets/tax-documents.jpg";
@@ -59,7 +60,14 @@ const ObjectivesSection = () => (
                 <div>
                   <h3 className="font-display text-lg font-semibold mb-1">{item.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
-                </div>
+          </div>
+
+          <Link
+            to="/services"
+            className="mt-8 inline-block px-8 py-3 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+          >
+            Learn More
+          </Link>
               </motion.div>
             ))}
           </div>
