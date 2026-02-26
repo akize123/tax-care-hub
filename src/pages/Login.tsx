@@ -101,7 +101,7 @@ const Login = () => {
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {isSignup && (
+            {isSignup && !isForgotPassword && (
               <div>
                 <Label htmlFor="login-name">Full Name</Label>
                 <div className="relative">
@@ -117,42 +117,66 @@ const Login = () => {
                 <Input id="login-email" type="email" placeholder="you@example.com" className="pl-10" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
             </div>
-            <div>
-              <Label htmlFor="login-password">Password</Label>
-              <div className="relative">
-                <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  id="login-password"
-                  type={showPassword ? "text" : "password"}
-                  placeholder="••••••••"
-                  className="pl-10 pr-10"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                >
-                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
-                </button>
+            {!isForgotPassword && (
+              <div>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="login-password">Password</Label>
+                  {!isSignup && (
+                    <button
+                      type="button"
+                      onClick={() => setIsForgotPassword(true)}
+                      className="text-xs text-accent hover:underline"
+                    >
+                      Forgot password?
+                    </button>
+                  )}
+                </div>
+                <div className="relative">
+                  <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="login-password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    className="pl-10 pr-10"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
             <Button type="submit" disabled={loading} className="w-full gradient-gold text-primary font-semibold py-6 hover:opacity-90">
-              {loading ? "Please wait..." : isSignup ? "Sign Up" : "Log In"} {!loading && <ArrowRight size={16} className="ml-2" />}
+              {loading ? "Please wait..." : isForgotPassword ? "Send Reset Link" : isSignup ? "Sign Up" : "Log In"} {!loading && <ArrowRight size={16} className="ml-2" />}
             </Button>
           </form>
 
           <p className="mt-6 text-center text-sm text-muted-foreground">
-            {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-            <button
-              onClick={() => setIsSignup(!isSignup)}
-              className="text-accent font-semibold hover:underline"
-            >
-              {isSignup ? "Log In" : "Sign Up"}
-            </button>
+            {isForgotPassword ? (
+              <button
+                onClick={() => setIsForgotPassword(false)}
+                className="text-accent font-semibold hover:underline"
+              >
+                ← Back to Login
+              </button>
+            ) : (
+              <>
+                {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
+                <button
+                  onClick={() => setIsSignup(!isSignup)}
+                  className="text-accent font-semibold hover:underline"
+                >
+                  {isSignup ? "Log In" : "Sign Up"}
+                </button>
+              </>
+            )}
           </p>
 
           <div className="mt-8 text-center">
