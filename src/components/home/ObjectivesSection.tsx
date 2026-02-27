@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FileText, Calculator, Shield, Target, Users, TrendingUp, Clock } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
+import taxTeamBg from "@/assets/tax-team.jpg";
 
 const objectives = [
   { icon: FileText, title: "Simplified Filing", desc: "We break down the complex tax declaration process into simple, manageable steps handled entirely by our experts." },
