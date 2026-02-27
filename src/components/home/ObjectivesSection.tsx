@@ -16,15 +16,16 @@ const objectives = [
 const ObjectivesSection = () => (
   <section className="section-padding bg-card">
     <div className="container-narrow">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="grid md:grid-cols-2 gap-12 items-stretch">
         {/* Image on the left */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="flex"
         >
-          <img src={taxDocuments} alt="Tax documents and filing" className="rounded-lg shadow-lg w-full object-cover aspect-[4/5]" />
+          <img src={taxDocuments} alt="Tax documents and filing" className="rounded-lg shadow-lg w-full object-cover" />
         </motion.div>
 
         {/* Content on the right */}
@@ -33,44 +34,47 @@ const ObjectivesSection = () => (
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="flex flex-col justify-between"
         >
-          <div className="flex items-center gap-3 mb-2">
-            <Target size={20} className="text-accent" />
-            <p className="text-accent font-semibold uppercase tracking-widest text-sm">What We Do</p>
-          </div>
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
-            Our <span className="text-gradient-gold">Objectives</span>
-          </h2>
-          <div className="w-16 h-1 gradient-gold rounded-full mb-8" />
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <Target size={20} className="text-accent" />
+              <p className="text-accent font-semibold uppercase tracking-widest text-sm">What We Do</p>
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
+              Our <span className="text-gradient-gold">Objectives</span>
+            </h2>
+            <div className="w-16 h-1 gradient-gold rounded-full mb-6" />
 
-          <div className="space-y-6">
-            {objectives.map((item, i) => (
-              <motion.div
-                key={item.title}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="flex items-start gap-4"
-              >
-                <div className="w-12 h-12 shrink-0 rounded-full gradient-gold flex items-center justify-center">
-                  <item.icon size={20} className="text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold mb-1">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+            <div className="space-y-5">
+              {objectives.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={fadeUp}
+                  className="flex items-start gap-4"
+                >
+                  <div className="w-10 h-10 shrink-0 rounded-full gradient-gold flex items-center justify-center">
+                    <item.icon size={18} className="text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-display text-base font-semibold mb-0.5">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           <Link
             to="/services"
-            className="mt-8 inline-block px-8 py-3 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+            className="mt-6 inline-block px-8 py-3 rounded-md text-base font-semibold gradient-gold text-primary transition-opacity hover:opacity-90 text-center"
           >
             Learn More
           </Link>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
       </div>
     </div>
