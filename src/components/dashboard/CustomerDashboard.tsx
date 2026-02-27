@@ -56,17 +56,31 @@ const CustomerDashboard = () => {
 
       <main className="max-w-6xl mx-auto px-4 md:px-8 py-8">
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6">
             <div>
               <h1 className="font-display text-2xl md:text-3xl font-bold">My Dashboard</h1>
-              <p className="text-muted-foreground text-sm mt-1">Track your tax service applications</p>
+              <p className="text-muted-foreground text-sm mt-1">Welcome back, {profile?.full_name || user?.email}</p>
             </div>
-            <BookingDialog>
-              <Button className="gradient-gold text-primary font-semibold hover:opacity-90">
-                <Plus size={16} className="mr-2" /> New Application
-              </Button>
-            </BookingDialog>
           </div>
+
+          {/* Book Now Hero Card */}
+          <Card className="mb-8 overflow-hidden border-accent/30 bg-gradient-to-r from-primary to-primary/80">
+            <div className="flex flex-col md:flex-row items-center justify-between p-6 md:p-8 gap-4">
+              <div className="text-center md:text-left">
+                <h2 className="font-display text-xl md:text-2xl font-bold text-primary-foreground mb-2">
+                  Ready to File Your Taxes?
+                </h2>
+                <p className="text-primary-foreground/70 text-sm md:text-base max-w-md">
+                  Book a tax declaration service now. Our experts will handle everything from start to finish.
+                </p>
+              </div>
+              <BookingDialog>
+                <Button className="gradient-gold text-primary font-bold px-8 py-6 text-base md:text-lg hover:opacity-90 shadow-lg whitespace-nowrap">
+                  <Plus size={20} className="mr-2" /> Book Now
+                </Button>
+              </BookingDialog>
+            </div>
+          </Card>
 
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
