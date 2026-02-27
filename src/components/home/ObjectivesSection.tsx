@@ -18,7 +18,7 @@ const ObjectivesSection = () => (
     {/* Background image */}
     <div
       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url('/lovable-uploads/objectives-bg.jpg')` }}
+      style={{ backgroundImage: `url(${taxTeamBg})` }}
     />
     {/* Dark overlay for readability */}
     <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
