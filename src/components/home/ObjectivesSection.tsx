@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FileText, Calculator, Shield, Target, Users, TrendingUp, Clock } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
+import taxTeamBg from "@/assets/tax-team.jpg";
 
 const objectives = [
   { icon: FileText, title: "Simplified Filing", desc: "We break down the complex tax declaration process into simple, manageable steps handled entirely by our experts." },
@@ -13,14 +14,14 @@ const objectives = [
 ];
 
 const ObjectivesSection = () => (
-  <section className="section-padding relative overflow-hidden bg-card">
-    {/* Subtle background pattern */}
-    <div className="absolute inset-0 opacity-[0.03]" style={{
-      backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
-      backgroundSize: '32px 32px',
-    }} />
-    <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/5 blur-3xl -translate-y-1/2 translate-x-1/3" />
-    <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-accent/5 blur-3xl translate-y-1/2 -translate-x-1/3" />
+  <section className="section-padding relative overflow-hidden">
+    {/* Background image */}
+    <div
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${taxTeamBg})` }}
+    />
+    {/* Dark overlay for readability */}
+    <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
 
     <div className="container-narrow relative z-10">
       {/* Section header centered */}
