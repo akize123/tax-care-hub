@@ -20,8 +20,8 @@ const ObjectivesSection = () => (
       className="absolute inset-0 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${taxTeamBg})` }}
     />
-    {/* Dark overlay for readability */}
-    <div className="absolute inset-0 bg-background/85 backdrop-blur-sm" />
+    {/* Dark overlay - lets image show through */}
+    <div className="absolute inset-0 bg-primary/60" />
 
     <div className="container-narrow relative z-10">
       {/* Section header centered */}
@@ -36,7 +36,7 @@ const ObjectivesSection = () => (
           <Target size={20} className="text-accent" />
           <p className="text-accent font-semibold uppercase tracking-widest text-sm">What We Do</p>
         </div>
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-3">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-primary-foreground mb-3">
           Our <span className="text-gradient-gold">Objectives</span>
         </h2>
         <div className="w-16 h-1 gradient-gold rounded-full mx-auto" />
@@ -52,13 +52,13 @@ const ObjectivesSection = () => (
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="group relative rounded-xl border border-border/60 bg-background/60 backdrop-blur-sm p-6 transition-all duration-300 hover:shadow-lg hover:border-accent/30 hover:-translate-y-1"
+            className="group relative rounded-xl border border-primary-foreground/20 bg-primary/50 backdrop-blur-md p-6 transition-all duration-300 hover:shadow-lg hover:border-accent/40 hover:-translate-y-1"
           >
             <div className="w-12 h-12 rounded-full gradient-gold flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
               <item.icon size={20} className="text-primary" />
             </div>
-            <h3 className="font-display text-lg font-semibold mb-2">{item.title}</h3>
-            <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+            <h3 className="font-display text-lg font-semibold mb-2 text-primary-foreground">{item.title}</h3>
+            <p className="text-primary-foreground/70 text-sm leading-relaxed">{item.desc}</p>
           </motion.div>
         ))}
       </div>
