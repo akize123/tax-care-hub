@@ -33,28 +33,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    // Set up listener first, but do NOT await inside the callback
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
+      (_event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
         if (session?.user) {
-          const userRole = await fetchRole(session.user.id);
-          setRole(userRole);
+          // Fire and forget – use setTimeout to avoid blocking the auth state change
+          setTimeout(() => {
+            fetchRole(session.user.id).then(setRole);
+          }, 0);
         } else {
           setRole(null);
+          setLoading(false);
         }
-        setLoading(false);
       }
     );
 
-    supabase.auth.getSession().then(async ({ data: { session } }) => {
+    // Restore session on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        const userRole = await fetchRole(session.user.id);
-        setRole(userRole);
+        fetchRole(session.user.id).then((r) => {
+          setRole(r);
+          setLoading(false);
+        });
+      } else {
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
