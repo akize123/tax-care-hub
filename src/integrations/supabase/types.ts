@@ -53,6 +53,39 @@ export type Database = {
         }
         Relationships: []
       }
+      contact_messages: {
+        Row: {
+          country: string | null
+          created_at: string
+          email: string
+          full_name: string
+          id: string
+          message: string
+          phone: string | null
+          source: string
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          email: string
+          full_name: string
+          id?: string
+          message: string
+          phone?: string | null
+          source?: string
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string
+          id?: string
+          message?: string
+          phone?: string | null
+          source?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
