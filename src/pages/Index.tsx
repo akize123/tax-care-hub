@@ -174,9 +174,9 @@ const Index = () => {
                     className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/40 resize-none"
                   />
                 </div>
-                <Button type="submit" className="w-full gradient-gold text-primary font-semibold py-5 hover:opacity-90">
+                <Button type="submit" disabled={loading} className="w-full gradient-gold text-primary font-semibold py-5 hover:opacity-90">
                   <Send size={16} className="mr-2" />
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </motion.div>

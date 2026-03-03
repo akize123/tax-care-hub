@@ -203,8 +203,8 @@ const Contact = () => {
                       onChange={(e) => setForm({ ...form, message: e.target.value })}
                     />
                   </div>
-                  <Button type="submit" className="w-full gradient-gold text-primary font-semibold hover:opacity-90">
-                    <Send size={16} className="mr-2" /> Send Message
+                  <Button type="submit" disabled={loading} className="w-full gradient-gold text-primary font-semibold hover:opacity-90">
+                    <Send size={16} className="mr-2" /> {loading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               )}
