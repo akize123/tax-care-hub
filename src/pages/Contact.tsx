@@ -8,6 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import Layout from "@/components/Layout";
 import BookingDialog from "@/components/BookingDialog";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const countries = [
   "Rwanda", "Burundi", "Uganda", "Kenya", "Tanzania", "DR Congo", "Other",
@@ -16,15 +18,40 @@ const countries = [
 const Contact = () => {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const whatsappNumber = "250780521244";
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+
+    // Save to database
+    const { error } = await supabase.from("contact_messages").insert({
+      full_name: `${form.firstName} ${form.lastName}`,
+      email: form.email,
+      phone: form.phone || null,
+      country: form.country || null,
+      message: form.message,
+      source: "contact",
+    });
+
+    if (error) {
+      console.error("DB error:", error);
+    }
+
+    // Also open mailto as backup
     const subject = encodeURIComponent(`Contact from ${form.firstName} ${form.lastName}`);
     const body = encodeURIComponent(`Name: ${form.firstName} ${form.lastName}\nEmail: ${form.email}\nPhone: ${form.phone}\nCountry: ${form.country}\n\nMessage:\n${form.message}`);
-    window.location.href = `mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`;
+    window.open(`mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`, "_blank");
+
+    setLoading(false);
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    toast({ title: "Message Sent!", description: "Your message has been delivered to our team." });
+    setTimeout(() => {
+      setSubmitted(false);
+      setForm({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" });
+    }, 4000);
   };
 
   return (

@@ -11,20 +11,39 @@ import MissionSection from "@/components/home/MissionSection";
 import PartnersSection from "@/components/home/PartnersSection";
 import TeamSection from "@/components/home/TeamSection";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Index = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [comment, setComment] = useState("");
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const [alertVisible, setAlertVisible] = useState(true);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName || !email || !comment) return;
+    setLoading(true);
+
+    // Save to database
+    const { error } = await supabase.from("contact_messages").insert({
+      full_name: fullName,
+      email,
+      message: comment,
+      source: "homepage",
+    });
+
+    if (error) {
+      console.error("DB error:", error);
+    }
+
+    // Also open mailto as backup
     const subject = encodeURIComponent(`Message from ${fullName}`);
     const body = encodeURIComponent(`Name: ${fullName}\nEmail: ${email}\n\nMessage:\n${comment}`);
-    window.location.href = `mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`;
+    window.open(`mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`, "_blank");
+
+    setLoading(false);
     toast({ title: "Message Sent!", description: "Thank you for reaching out. We'll get back to you soon." });
     setFullName("");
     setEmail("");
