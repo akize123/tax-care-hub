@@ -35,17 +35,20 @@ const Services = () => {
               const Icon = icons[i];
               return (
                 <motion.div key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-                  className="glass-card p-8 hover:shadow-lg transition-shadow group">
-                  <div className="w-14 h-14 rounded-full gradient-gold flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-                    <Icon size={24} className="text-primary" />
+                  className="glass-card p-8 group relative overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:border-accent/30">
+                  <div className="absolute inset-0 gradient-gold opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-full gradient-gold flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500">
+                      <Icon size={24} className="text-primary" />
+                    </div>
+                    <h3 className="font-display text-xl font-semibold mb-3 group-hover:text-accent transition-colors duration-300">{s.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
+                    <BookingDialog>
+                      <button className="text-accent text-sm font-semibold flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
+                        {t.services.bookNow} <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </BookingDialog>
                   </div>
-                  <h3 className="font-display text-xl font-semibold mb-3">{s.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
-                  <BookingDialog>
-                    <button className="text-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">
-                      {t.services.bookNow} <ArrowRight size={14} />
-                    </button>
-                  </BookingDialog>
                 </motion.div>
               );
             })}

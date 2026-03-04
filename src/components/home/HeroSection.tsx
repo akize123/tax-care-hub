@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,14 +10,18 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-      <div className="absolute inset-0">
-        <img src={heroBg} alt="Tax Care office" className="w-full h-full object-cover" />
+    <section ref={ref} className="relative min-h-[90vh] flex items-center overflow-hidden">
+      <motion.div className="absolute inset-0" style={{ y: bgY }}>
+        <img src={heroBg} alt="Tax Care office" className="w-full h-full object-cover scale-110" />
         <div className="absolute inset-0 bg-primary/80" />
-      </div>
-      <div className="relative container-narrow section-padding text-primary-foreground">
+      </motion.div>
+      <motion.div className="relative container-narrow section-padding text-primary-foreground" style={{ opacity }}>
         <motion.div initial="hidden" animate="visible" className="max-w-2xl">
           <motion.p custom={0} variants={fadeUp} className="text-accent font-semibold tracking-widest uppercase text-sm mb-4">
             {t.hero.badge}
@@ -42,7 +47,7 @@ const HeroSection = () => {
             </Link>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };
