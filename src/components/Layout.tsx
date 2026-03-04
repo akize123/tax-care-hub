@@ -17,9 +17,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white pl-4 pr-3 py-3 rounded-full shadow-lg hover:scale-105 transition-transform"
       >
-        <MessageCircle size={28} fill="white" strokeWidth={0} />
+        <span className="text-sm font-medium whitespace-nowrap">Chat with us</span>
+        <MessageCircle size={24} fill="white" strokeWidth={0} />
       </a>
     </div>
   );
