@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Layout from "@/components/Layout";
 import HeroSection from "@/components/home/HeroSection";
+import StatsSection from "@/components/home/StatsSection";
 import ObjectivesSection from "@/components/home/ObjectivesSection";
 import MissionSection from "@/components/home/MissionSection";
 import PartnersSection from "@/components/home/PartnersSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import TeamSection from "@/components/home/TeamSection";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -56,9 +58,11 @@ const Index = () => {
         </div>
       )}
       <HeroSection />
+      <StatsSection />
       <ObjectivesSection />
       <MissionSection />
       <PartnersSection />
+      <TestimonialsSection />
       <TeamSection />
 
       {/* Map */}
