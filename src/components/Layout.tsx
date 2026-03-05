@@ -12,16 +12,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
       <Navbar />
       <main className="flex-1 pt-16">{children}</main>
       <Footer />
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")}
         aria-label="Chat on WhatsApp"
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white pl-4 pr-3 py-3 rounded-full shadow-lg hover:scale-105 transition-transform"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#25D366] text-white pl-4 pr-3 py-3 rounded-full shadow-lg hover:scale-105 transition-transform cursor-pointer"
       >
         <span className="text-sm font-medium whitespace-nowrap">Chat with us</span>
         <MessageCircle size={24} fill="white" strokeWidth={0} />
-      </a>
+      </button>
     </div>
   );
 };
