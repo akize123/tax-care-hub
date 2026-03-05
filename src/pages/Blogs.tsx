@@ -53,7 +53,17 @@ const Blogs = () => {
       <section className="section-padding bg-card">
         <div className="container-narrow max-w-3xl space-y-10">
           {blogPosts.map((post, i) => (
-            <motion.article key={post.id} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="bg-secondary rounded-lg p-8">
+            <motion.article
+              key={post.id}
+              custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              whileHover={{ y: -6, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="bg-secondary rounded-lg p-8 hover:shadow-2xl hover:border-accent/20 border border-transparent transition-all duration-500 cursor-default"
+            >
               <div className="flex items-center gap-2 text-accent text-sm font-medium mb-3"><Calendar size={14} />{post.date}</div>
               <h2 className="font-display text-2xl font-bold mb-3">{post.titleKey}</h2>
               <p className="text-muted-foreground mb-4">{post.summary}</p>
@@ -86,11 +96,18 @@ const Blogs = () => {
 
       <section className="section-padding bg-secondary">
         <div className="container-narrow max-w-xl">
-          <div className="text-center mb-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
             <h2 className="font-display text-3xl font-bold mb-2">{t.blogs.questionTitle}</h2>
             <p className="text-muted-foreground text-sm">{t.blogs.questionDesc}</p>
-          </div>
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-4 bg-card rounded-lg p-8">
+          </motion.div>
+          <motion.form
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            onSubmit={(e) => e.preventDefault()}
+            className="space-y-4 bg-card rounded-lg p-8"
+          >
             <div className="grid grid-cols-2 gap-4">
               <Input placeholder={t.blogs.yourName} value={commentForm.name} onChange={(e) => setCommentForm({ ...commentForm, name: e.target.value })} />
               <Input type="email" placeholder={t.blogs.yourEmail} value={commentForm.email} onChange={(e) => setCommentForm({ ...commentForm, email: e.target.value })} />
@@ -99,7 +116,7 @@ const Blogs = () => {
             <Button className="gradient-gold text-primary font-semibold w-full hover:opacity-90">
               <Send size={16} className="mr-2" /> {t.blogs.send}
             </Button>
-          </form>
+          </motion.form>
         </div>
       </section>
     </Layout>
