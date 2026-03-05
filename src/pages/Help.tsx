@@ -23,8 +23,14 @@ const Help = () => {
         <div className="container-narrow max-w-3xl">
           <Accordion type="single" collapsible className="space-y-3">
             {t.help.faqs.map((faq, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
-                <AccordionItem value={`faq-${i}`} className="bg-secondary rounded-lg border-none px-6">
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, duration: 0.5 }}
+              >
+                <AccordionItem value={`faq-${i}`} className="bg-secondary rounded-lg border-none px-6 hover:shadow-lg transition-shadow duration-300">
                   <AccordionTrigger className="font-display font-semibold text-left hover:no-underline">{faq.q}</AccordionTrigger>
                   <AccordionContent className="text-muted-foreground leading-relaxed">{faq.a}</AccordionContent>
                 </AccordionItem>
@@ -36,8 +42,13 @@ const Help = () => {
 
       <section className="section-padding bg-secondary">
         <div className="container-narrow text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <MessageCircle size={48} className="mx-auto text-accent mb-4" />
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+            >
+              <MessageCircle size={48} className="mx-auto text-accent mb-4" />
+            </motion.div>
             <h2 className="font-display text-3xl font-bold mb-3">{t.help.stillQuestions}</h2>
             <p className="text-muted-foreground max-w-md mx-auto mb-6">{t.help.stillQuestionsDesc}</p>
             <a href={`https://wa.me/${whatsappNumber}?text=Hello%20Tax%20Care%2C%20I%20need%20help%20with%20my%20tax%20declaration.`} target="_blank" rel="noopener noreferrer">

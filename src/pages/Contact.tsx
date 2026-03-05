@@ -14,6 +14,12 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const countries = ["Rwanda", "Burundi", "Uganda", "Kenya", "Tanzania", "DR Congo", "Other"];
 
+const contactItems = [
+  { icon: MapPin, text: "KN 5 Rd, Kigali City Center, Kigali, Rwanda" },
+  { icon: Phone, text: "+250 780 521 244" },
+  { icon: Mail, text: "akizeisrael123@gmail.com" },
+];
+
 const Contact = () => {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
@@ -55,36 +61,61 @@ const Contact = () => {
       <section className="section-padding bg-card">
         <div className="container-narrow">
           <div className="grid md:grid-cols-5 gap-12">
-            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-2 space-y-8">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="md:col-span-2 space-y-8">
               <div>
                 <h3 className="font-display text-xl font-bold mb-4">{t.contact.infoTitle}</h3>
                 <ul className="space-y-4 text-sm">
-                  <li className="flex items-start gap-3"><MapPin size={18} className="text-accent mt-0.5 shrink-0" /><span className="text-muted-foreground">KN 5 Rd, Kigali City Center, Kigali, Rwanda</span></li>
-                  <li className="flex items-start gap-3"><Phone size={18} className="text-accent mt-0.5 shrink-0" /><span className="text-muted-foreground">+250 780 521 244</span></li>
-                  <li className="flex items-start gap-3"><Mail size={18} className="text-accent mt-0.5 shrink-0" /><span className="text-muted-foreground">akizeisrael123@gmail.com</span></li>
+                  {contactItems.map((item, i) => {
+                    const Icon = item.icon;
+                    return (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -15 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 + i * 0.1 }}
+                        className="flex items-start gap-3"
+                      >
+                        <Icon size={18} className="text-accent mt-0.5 shrink-0" />
+                        <span className="text-muted-foreground">{item.text}</span>
+                      </motion.li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className="space-y-3">
                 <h4 className="font-display font-semibold">{t.contact.quickActions}</h4>
-                <a href={`https://wa.me/${whatsappNumber}?text=Hello%20Tax%20Care!`} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm bg-secondary rounded-lg p-3 hover:bg-accent/10 transition-colors">
+                <motion.a
+                  whileHover={{ scale: 1.03, x: 4 }}
+                  href={`https://wa.me/${whatsappNumber}?text=Hello%20Tax%20Care!`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm bg-secondary rounded-lg p-3 hover:bg-accent/10 transition-colors"
+                >
                   <MessageCircle size={18} className="text-accent" /><span>{t.contact.chatWhatsApp}</span>
-                </a>
+                </motion.a>
                 <BookingDialog>
-                  <button className="flex items-center gap-2 text-sm bg-secondary rounded-lg p-3 hover:bg-accent/10 transition-colors w-full text-left">
+                  <motion.button
+                    whileHover={{ scale: 1.03, x: 4 }}
+                    className="flex items-center gap-2 text-sm bg-secondary rounded-lg p-3 hover:bg-accent/10 transition-colors w-full text-left"
+                  >
                     <Send size={18} className="text-accent" /><span>{t.contact.bookService}</span>
-                  </button>
+                  </motion.button>
                 </BookingDialog>
               </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="md:col-span-3">
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="md:col-span-3">
               {submitted ? (
-                <div className="bg-secondary rounded-lg p-12 text-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-secondary rounded-lg p-12 text-center"
+                >
                   <div className="w-16 h-16 mx-auto rounded-full gradient-gold flex items-center justify-center mb-4"><Send size={28} className="text-primary" /></div>
                   <h3 className="font-display text-2xl font-bold mb-2">{t.contact.sentTitle}</h3>
                   <p className="text-muted-foreground">{t.contact.sentDesc}</p>
-                </div>
+                </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="bg-secondary rounded-lg p-8 space-y-5">
                   <div className="grid grid-cols-2 gap-4">
