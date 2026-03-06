@@ -77,14 +77,6 @@ const Navbar = () => {
             </Link>
           )}
 
-          {/* Dark Mode Toggle */}
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className="ml-2 p-2 rounded-md text-primary-foreground/70 hover:text-primary-foreground transition-colors border border-primary-foreground/20 hover:border-primary-foreground/40"
-            aria-label="Toggle dark mode"
-          >
-            {isDark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
 
           {/* Language Selector */}
           <DropdownMenu>
@@ -147,14 +139,6 @@ const Navbar = () => {
               >
                 {user ? t.nav.dashboard : t.nav.login}
               </Link>
-              {/* Mobile Dark Mode Toggle */}
-              <button
-                onClick={() => setIsDark(!isDark)}
-                className="mt-3 mx-3 flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-primary-foreground/70 border border-primary-foreground/20"
-              >
-                {isDark ? <Sun size={16} /> : <Moon size={16} />}
-                <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
-              </button>
               {/* Mobile Language Selector */}
               <div className="flex gap-2 mt-3 px-3">
                 {(Object.keys(languageLabels) as Language[]).map((lang) => (
