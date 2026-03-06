@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe, Moon, Sun } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import taxcareLogo from "@/assets/taxcare-logo.jpeg";
 import { useAuth } from "@/hooks/useAuth";
@@ -14,21 +14,10 @@ import {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") === "dark" ||
-        (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
-    return false;
-  });
   const location = useLocation();
   const { user } = useAuth();
   const { language, setLanguage, t, languageLabels } = useLanguage();
 
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark);
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  }, [isDark]);
 
   const navLinks = [
     { to: "/", label: t.nav.home },
