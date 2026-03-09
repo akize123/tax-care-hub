@@ -273,21 +273,88 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline / Journey Section */}
-      <section className="section-padding bg-card">
-        <div className="container-narrow">
+      {/* Timeline / Journey Section - Advanced Design */}
+      <section className="section-padding bg-card relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container-narrow relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">{t.about.journeyBadge}</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">{t.about.journeyTitle}</h2>
+            <span className="inline-block bg-accent/10 border border-accent/20 text-accent font-semibold uppercase tracking-widest text-xs px-5 py-2 rounded-full mb-4">
+              {t.about.journeyBadge}
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">{t.about.journeyTitle}</h2>
+            <p className="text-muted-foreground max-w-lg mx-auto">
+              {language === "fr" 
+                ? "Découvrez notre parcours de croissance et d'innovation" 
+                : language === "rw" 
+                ? "Menya urugendo rwacu rwo gukura no guhanga udushya" 
+                : "Follow our path of growth and innovation over the years"}
+            </p>
           </motion.div>
-          <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
-            <div className="space-y-10">
+
+          {/* Desktop: Horizontal timeline */}
+          <div className="hidden lg:block relative">
+            {/* Central horizontal line */}
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent -translate-y-1/2" />
+            
+            <div className="grid grid-cols-4 gap-6">
+              {t.about.milestones.map((m, i) => {
+                const isTop = i % 2 === 0;
+                return (
+                  <motion.div
+                    key={m.year}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className={`relative flex flex-col ${isTop ? "items-center" : "items-center flex-col-reverse"}`}
+                  >
+                    {/* Card */}
+                    <motion.div
+                      whileHover={{ scale: 1.03, y: isTop ? -6 : 6 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className={`w-full bg-secondary border border-border/50 rounded-2xl p-6 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 ${isTop ? "mb-6" : "mt-6"}`}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-lg gradient-gold flex items-center justify-center">
+                          <span className="text-primary font-bold text-sm">{m.year.slice(-2)}</span>
+                        </div>
+                        <div className="h-px flex-1 bg-border" />
+                      </div>
+                      <h3 className="font-display text-base font-bold mb-2 leading-tight">{m.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{m.desc}</p>
+                    </motion.div>
+
+                    {/* Connector line */}
+                    <div className={`w-0.5 h-8 bg-accent/30 ${isTop ? "order-last" : "order-first"}`} />
+
+                    {/* Center dot */}
+                    <div className="relative z-10">
+                      <div className="w-5 h-5 rounded-full gradient-gold shadow-lg shadow-accent/30" />
+                      <div className="absolute inset-0 w-5 h-5 rounded-full gradient-gold animate-ping opacity-20" />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile/Tablet: Vertical timeline */}
+          <div className="lg:hidden relative">
+            {/* Vertical line */}
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/50 via-accent/30 to-accent/50" />
+
+            <div className="space-y-8">
               {t.about.milestones.map((m, i) => (
                 <motion.div
                   key={m.year}
@@ -296,25 +363,48 @@ const About = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className={`relative flex items-start gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                  className="relative flex items-start gap-6 pl-2"
                 >
-                  <div className="hidden md:block md:w-1/2" />
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full gradient-gold flex items-center justify-center z-10 shadow-lg">
-                    <span className="text-primary font-bold text-xs">{m.year.slice(-2)}</span>
+                  {/* Year badge */}
+                  <div className="relative z-10 shrink-0">
+                    <div className="w-10 h-10 rounded-full gradient-gold flex items-center justify-center shadow-lg shadow-accent/20">
+                      <span className="text-primary font-bold text-xs">{m.year.slice(-2)}</span>
+                    </div>
                   </div>
+
+                  {/* Card */}
                   <motion.div
-                    whileHover={{ scale: 1.02, y: -4 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="ml-14 md:ml-0 md:w-1/2 bg-card p-6 rounded-xl border border-border/50 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-300"
+                    className="flex-1 bg-secondary border border-border/50 rounded-xl p-5 hover:border-accent/40 hover:shadow-lg transition-all duration-300"
                   >
-                    <span className="text-accent font-bold text-sm">{m.year}</span>
-                    <h3 className="font-display text-lg font-semibold mt-1">{m.title}</h3>
-                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">{m.desc}</p>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-accent font-bold text-sm">{m.year}</span>
+                      <div className="w-8 h-0.5 bg-accent/30" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">{m.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{m.desc}</p>
                   </motion.div>
                 </motion.div>
               ))}
             </div>
           </div>
+
+          {/* Future indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <div className="inline-flex items-center gap-3 bg-accent/10 border border-accent/20 px-6 py-3 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-accent font-medium text-sm">
+                {language === "fr" ? "Et l'aventure continue..." : language === "rw" ? "Kandi urugendo rurakomeje..." : "And the journey continues..."}
+              </span>
+              <ArrowRight size={16} className="text-accent" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
