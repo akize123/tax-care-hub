@@ -12,6 +12,11 @@ import MissionSection from "@/components/home/MissionSection";
 import PartnersSection from "@/components/home/PartnersSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import TeamSection from "@/components/home/TeamSection";
+import FAQSection from "@/components/home/FAQSection";
+import SocialLinksSection from "@/components/home/SocialLinksSection";
+import CTABanner from "@/components/home/CTABanner";
+import WorkingHoursSection from "@/components/home/WorkingHoursSection";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -49,6 +54,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <WhatsAppButton />
       {alertVisible && (
         <div className="relative overflow-hidden animate-shine border-b border-accent/30" style={{ background: 'linear-gradient(90deg, hsl(var(--navy)) 0%, hsl(var(--gold)) 30%, hsl(var(--navy)) 50%, hsl(var(--gold)) 70%, hsl(var(--navy)) 100%)', backgroundSize: '200% 100%' }}>
           <div className="py-3 flex items-center justify-center relative">
@@ -67,6 +73,10 @@ const Index = () => {
       <PartnersSection />
       <TestimonialsSection />
       <TeamSection />
+      <CTABanner />
+      <FAQSection />
+      <WorkingHoursSection />
+      <SocialLinksSection />
 
       {/* Map */}
       <section className="section-padding bg-secondary">
