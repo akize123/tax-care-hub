@@ -53,13 +53,6 @@ const About = () => {
     ? "Twashinze Tax Care dufite intego yoroshye: gutuma gutanga imisoro byoroshye ku banyarwanda bose."
     : "We founded Tax Care with one simple mission: to make tax declaration accessible to everyone in Rwanda.";
 
-  const teamMembers = [
-    { name: "Steven M.", role: t.team.members[0].role, desc: t.team.members[0].desc, photo: stevenPhoto },
-    { name: "Grace K.", role: t.team.members[1].role, desc: t.team.members[1].desc, photo: null },
-    { name: "Jean P.", role: t.team.members[2].role, desc: t.team.members[2].desc, photo: null },
-    { name: "Aline N.", role: t.team.members[3].role, desc: t.team.members[3].desc, photo: null },
-  ];
-
   return (
     <Layout>
       {/* Hero Section with Background Pattern */}
@@ -296,63 +289,6 @@ const About = () => {
                 </motion.div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="section-padding bg-secondary">
-        <div className="container-narrow">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-1.5 rounded-full mb-4">
-              <Users size={16} className="text-accent" />
-              <span className="text-accent font-semibold uppercase tracking-widest text-xs">{t.team.badge}</span>
-            </div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              {t.team.title1} <span className="text-gradient-gold">{t.team.titleHighlight}</span>
-            </h2>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">{t.team.desc}</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="group relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  {member.photo ? (
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className="w-full h-full gradient-navy flex items-center justify-center">
-                      <span className="text-primary-foreground font-display font-bold text-4xl opacity-80">
-                        {member.name.split(" ").map((n) => n[0]).join("")}
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-card to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="font-display text-lg font-bold mb-1">{member.name}</h3>
-                  <p className="text-accent text-sm font-semibold mb-2">{member.role}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{member.desc}</p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
