@@ -165,6 +165,9 @@ export const fr = {
     stillQuestions: "Encore des Questions ?",
     stillQuestionsDesc: "Discutez directement avec notre équipe de support sur WhatsApp. Nous sommes là pour vous aider.",
     chatWhatsApp: "Discuter sur WhatsApp",
+    callUs: "Appelez-nous Maintenant",
+    callDesc: "Parlez directement avec notre équipe pour une assistance immédiate.",
+    searchPlaceholder: "Rechercher sur notre site...",
     faqs: [
       { q: "Qu'est-ce que Tax Care Services Center ?", a: "Tax Care est un centre de services professionnels dédié à aider les particuliers et les entreprises au Rwanda dans leurs processus de déclaration fiscale. Nous gérons tout, de la préparation des documents à la soumission finale auprès de l'Autorité Fiscale du Rwanda (RRA)." },
       { q: "Qui peut utiliser vos services ?", a: "Toute personne ayant besoin d'aide pour la déclaration fiscale — particuliers, propriétaires de petites entreprises, freelancers, ONG et entreprises. Si vous payez des impôts au Rwanda, nous pouvons vous aider." },

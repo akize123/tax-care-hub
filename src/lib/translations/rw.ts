@@ -165,6 +165,9 @@ export const rw = {
     stillQuestions: "Ugifite Ibibazo?",
     stillQuestionsDesc: "Vugana ku buryo butaziguye n'ikipe yacu y'ubufasha kuri WhatsApp. Turi hano kukugufasha.",
     chatWhatsApp: "Vugana kuri WhatsApp",
+    callUs: "Duhamagare Nonaha",
+    callDesc: "Vugana ku buryo butaziguye n'ikipe yacu kugira ngo ubufashe byihuse.",
+    searchPlaceholder: "Shakisha ku rubuga rwacu...",
     faqs: [
       { q: "Tax Care Services Center ni iki?", a: "Tax Care ni ikigo cy'imirimo gihabwa gufasha abantu ku giti cyabo n'ibigo mu Rwanda mu mikorere yo kwemeza imisoro. Dufata byose, uhereye ku gutegura inyandiko kugeza ku itangwa rya nyuma muri RRA." },
       { q: "Ni nde ushobora gukoresha serivisi zanyu?", a: "Umuntu wese ukeneye ubufasha ku kwemeza imisoro — abantu ku giti cyabo, abacuruzi bato, abikorera ku giti cyabo, imiryango itari iya leta n'ibigo. Niba wishyura imisoro mu Rwanda, turashobora kugufasha." },

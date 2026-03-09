@@ -150,7 +150,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
+      
     </header>
   );
 };
