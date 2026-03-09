@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, AlertTriangle, Send, Mail } from "lucide-react";
+import { MapPin, AlertTriangle, Send, Mail, Facebook, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,8 +12,6 @@ import MissionSection from "@/components/home/MissionSection";
 import PartnersSection from "@/components/home/PartnersSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import TeamSection from "@/components/home/TeamSection";
-import FAQSection from "@/components/home/FAQSection";
-import SocialLinksSection from "@/components/home/SocialLinksSection";
 import CTABanner from "@/components/home/CTABanner";
 import WorkingHoursSection from "@/components/home/WorkingHoursSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -28,7 +26,7 @@ const Index = () => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const [alertVisible, setAlertVisible] = useState(true);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,9 +72,7 @@ const Index = () => {
       <TestimonialsSection />
       <TeamSection />
       <CTABanner />
-      <FAQSection />
       <WorkingHoursSection />
-      <SocialLinksSection />
 
       {/* Map */}
       <section className="section-padding bg-secondary">
@@ -108,8 +104,33 @@ const Index = () => {
               </h2>
               <div className="w-16 h-1 gradient-gold mb-5 rounded-full" />
               <p className="text-primary-foreground/60 leading-relaxed mb-4">{t.stayUpdated.desc}</p>
-              <div className="flex items-center gap-3 text-primary-foreground/50 text-sm">
+              <div className="flex items-center gap-3 text-primary-foreground/50 text-sm mb-8">
                 <Send size={14} className="text-accent" /><span>akizeisrael123@gmail.com</span>
+              </div>
+
+              {/* Social links */}
+              <div>
+                <p className="text-accent font-semibold uppercase tracking-widest text-xs mb-4">
+                  {language === "fr" ? "Suivez-nous" : language === "rw" ? "Twandikire" : "Follow Us"}
+                </p>
+                <div className="flex items-center gap-3">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                    className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all">
+                    <Facebook size={18} />
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                    className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:bg-blue-700 hover:border-blue-700 hover:text-white transition-all">
+                    <Linkedin size={18} />
+                  </a>
+                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X"
+                    className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:bg-sky-500 hover:border-sky-500 hover:text-white transition-all">
+                    <Twitter size={18} />
+                  </a>
+                  <a href="mailto:akizeisrael123@gmail.com" aria-label="Email"
+                    className="w-10 h-10 rounded-full bg-primary-foreground/10 border border-primary-foreground/20 flex items-center justify-center text-primary-foreground/60 hover:bg-accent hover:border-accent hover:text-primary transition-all">
+                    <Mail size={18} />
+                  </a>
+                </div>
               </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
