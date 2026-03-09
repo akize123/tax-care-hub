@@ -51,17 +51,23 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <BookingDialog>
+            <button className="ml-2 px-5 py-2.5 rounded-md text-lg font-semibold border border-accent text-accent hover:bg-accent/10 transition-colors flex items-center gap-2">
+              <CalendarCheck size={18} />
+              {t.booking.title}
+            </button>
+          </BookingDialog>
           {user ? (
             <Link
               to="/dashboard"
-              className="ml-3 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+              className="ml-2 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
             >
               {t.nav.dashboard}
             </Link>
           ) : (
             <Link
               to="/login"
-              className="ml-3 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+              className="ml-2 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
             >
               {t.nav.login}
             </Link>
