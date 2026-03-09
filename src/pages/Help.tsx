@@ -16,8 +16,8 @@ interface SearchItem {
 }
 
 const Help = () => {
-  const whatsappNumber = "250788000000";
-  const phoneNumber = "+250780521244";
+  const whatsappNumber = "250781093714";
+  const phoneNumber = "+250781093714";
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");

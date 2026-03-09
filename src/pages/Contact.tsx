@@ -16,15 +16,15 @@ const countries = ["Rwanda", "Burundi", "Uganda", "Kenya", "Tanzania", "DR Congo
 
 const contactItems = [
   { icon: MapPin, text: "KN 5 Rd, Kigali City Center, Kigali, Rwanda" },
-  { icon: Phone, text: "+250 780 521 244" },
-  { icon: Mail, text: "akizeisrael123@gmail.com" },
+  { icon: Phone, text: "+250 781 093 714", href: "tel:+250781093714" },
+  { icon: Mail, text: "akizeisrael123@gmail.com", href: "mailto:akizeisrael123@gmail.com" },
 ];
 
 const Contact = () => {
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const whatsappNumber = "250780521244";
+  const whatsappNumber = "250781093714";
   const { toast } = useToast();
   const { t } = useLanguage();
 
@@ -77,6 +77,12 @@ const Contact = () => {
                 <ul className="space-y-4 text-sm">
                   {contactItems.map((item, i) => {
                     const Icon = item.icon;
+                    const content = (
+                      <>
+                        <Icon size={18} className="text-accent mt-0.5 shrink-0" />
+                        <span className="text-muted-foreground hover:text-accent transition-colors">{item.text}</span>
+                      </>
+                    );
                     return (
                       <motion.li
                         key={i}
@@ -86,8 +92,11 @@ const Contact = () => {
                         transition={{ delay: 0.2 + i * 0.1 }}
                         className="flex items-start gap-3"
                       >
-                        <Icon size={18} className="text-accent mt-0.5 shrink-0" />
-                        <span className="text-muted-foreground">{item.text}</span>
+                        {item.href ? (
+                          <a href={item.href} className="flex items-start gap-3 hover:text-accent transition-colors">{content}</a>
+                        ) : (
+                          content
+                        )}
                       </motion.li>
                     );
                   })}
