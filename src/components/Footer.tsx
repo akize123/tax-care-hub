@@ -44,7 +44,7 @@ const Footer = () => {
             <h4 className="font-display font-semibold text-accent mb-4">{t.footer.contactInfo}</h4>
             <ul className="space-y-3 text-sm text-primary-foreground/60">
               <li className="flex items-center gap-2"><MapPin size={16} className="text-accent shrink-0" />Kigali, Rwanda</li>
-              <li className="flex items-center gap-2"><Phone size={16} className="text-accent shrink-0" />+250 780 521 244</li>
+              <li className="flex items-center gap-2"><a href="tel:+250781093714" className="hover:text-accent transition-colors"><Phone size={16} className="text-accent shrink-0 inline mr-2" />+250 781 093 714</a></li>
               <li className="flex items-center gap-2"><Mail size={16} className="text-accent shrink-0" />akizeisrael123@gmail.com</li>
             </ul>
           </div>

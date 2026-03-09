@@ -47,17 +47,17 @@ const WorkingHoursSection = () => {
     {
       icon: Phone,
       label: { en: "Call Us", fr: "Appelez-nous", rw: "Duhamagare" },
-      value: "+250 (0) 790 123 456",
+      value: "+250 781 093 714",
       sub: { en: "Available during working hours", fr: "Disponible pendant les heures de travail", rw: "Igihe cy'akazi" },
-      href: "tel:+250790123456",
+      href: "tel:+250781093714",
       color: "bg-blue-500/10 text-blue-500",
     },
     {
       icon: MessageCircle,
       label: { en: "WhatsApp", fr: "WhatsApp", rw: "WhatsApp" },
-      value: "+250 790 123 456",
+      value: "+250 781 093 714",
       sub: { en: "Quick responses guaranteed", fr: "Réponses rapides garanties", rw: "Ibisubizo byihuse" },
-      href: "https://wa.me/250790123456",
+      href: "https://wa.me/250781093714",
       color: "bg-green-500/10 text-green-500",
     },
     {

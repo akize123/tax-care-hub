@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const WhatsAppButton = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const phoneNumber = "250790123456"; // WhatsApp number
+  const phoneNumber = "250781093714"; // WhatsApp number
   const message = encodeURIComponent(
     "Hello Tax Care! I would like to inquire about your services."
   );
