@@ -178,6 +178,9 @@ export const en = {
     stillQuestions: "Still Have Questions?",
     stillQuestionsDesc: "Chat directly with our support team on WhatsApp. We're here to help you.",
     chatWhatsApp: "Chat on WhatsApp",
+    callUs: "Call Us Now",
+    callDesc: "Speak directly with our team for immediate assistance.",
+    searchPlaceholder: "Search anything on our website...",
     faqs: [
       { q: "What is Tax Care Services Center?", a: "Tax Care is a professional service center dedicated to helping individuals and businesses in Rwanda with their tax declaration processes. We handle everything from document preparation to final submission with the Rwanda Revenue Authority (RRA)." },
       { q: "Who can use your services?", a: "Anyone who needs help with tax declaration — individuals, small business owners, freelancers, NGOs, and corporations. If you pay taxes in Rwanda, we can help." },
