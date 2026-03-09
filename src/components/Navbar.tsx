@@ -66,14 +66,8 @@ const Navbar = () => {
             </Link>
           )}
 
-          {/* Search Button */}
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="ml-2 flex items-center gap-1.5 px-3 py-2 rounded-md text-primary-foreground/70 hover:text-primary-foreground transition-colors border border-primary-foreground/20 hover:border-primary-foreground/40"
-            aria-label="Search"
-          >
-            <Search size={18} />
-          </button>
+
+
           {/* Language Selector */}
           <DropdownMenu>
             <DropdownMenuTrigger className="ml-auto mr-4 flex items-center gap-1.5 px-3 py-2 rounded-md text-primary-foreground/70 hover:text-primary-foreground transition-colors border border-primary-foreground/20 hover:border-primary-foreground/40">
