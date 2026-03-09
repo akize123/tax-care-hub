@@ -15,6 +15,7 @@ import {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
   const { language, setLanguage, t, languageLabels } = useLanguage();
