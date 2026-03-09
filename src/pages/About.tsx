@@ -65,9 +65,8 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center gap-2 bg-accent/10 border border-accent/20 px-5 py-2 rounded-full mb-6"
+            className="inline-block bg-accent/10 border border-accent/20 px-5 py-2 rounded-full mb-6"
           >
-            <Users size={16} className="text-accent" />
             <span className="text-accent font-semibold uppercase tracking-widest text-xs">{t.about.badge}</span>
           </motion.div>
           <motion.h1
