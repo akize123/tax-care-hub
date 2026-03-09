@@ -53,13 +53,6 @@ const About = () => {
     ? "Twashinze Tax Care dufite intego yoroshye: gutuma gutanga imisoro byoroshye ku banyarwanda bose."
     : "We founded Tax Care with one simple mission: to make tax declaration accessible to everyone in Rwanda.";
 
-  const teamMembers = [
-    { name: "Steven M.", role: t.team.members[0].role, desc: t.team.members[0].desc, photo: stevenPhoto },
-    { name: "Grace K.", role: t.team.members[1].role, desc: t.team.members[1].desc, photo: null },
-    { name: "Jean P.", role: t.team.members[2].role, desc: t.team.members[2].desc, photo: null },
-    { name: "Aline N.", role: t.team.members[3].role, desc: t.team.members[3].desc, photo: null },
-  ];
-
   return (
     <Layout>
       {/* Hero Section with Background Pattern */}
@@ -118,53 +111,117 @@ const About = () => {
       </section>
 
       {/* Story Section with Founder Quote */}
-      <section className="section-padding bg-card">
+      <section className="section-padding bg-card overflow-hidden">
         <div className="container-narrow">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block bg-accent/10 border border-accent/20 text-accent font-semibold uppercase tracking-widest text-xs px-5 py-2 rounded-full mb-4">
+              {language === "fr" ? "Notre Histoire" : language === "rw" ? "Inkuru Yacu" : "Our Story"}
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">{t.about.storyTitle}</h2>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-10 items-stretch">
+            {/* LEFT — story paragraphs with decorated styling */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
+              className="relative bg-secondary rounded-2xl p-8 md:p-10 border border-border/50 flex flex-col justify-between"
             >
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">{t.about.storyTitle}</h2>
-              <motion.div
-                className="space-y-4 text-muted-foreground leading-relaxed"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerContainer}
-              >
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 left-0 w-24 h-24 rounded-tl-2xl overflow-hidden pointer-events-none">
+                <div className="absolute -top-8 -left-8 w-24 h-24 gradient-gold opacity-20 rounded-full blur-xl" />
+              </div>
+
+              <div className="space-y-5 relative z-10">
                 {[t.about.storyP1, t.about.storyP2, t.about.storyP3, t.about.storyP4].map((p, i) => (
-                  <motion.p key={i} variants={fadeUp} custom={i}>{p}</motion.p>
+                  <motion.div
+                    key={i}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className="flex gap-4 items-start"
+                  >
+                    <div className="mt-1.5 w-2 h-2 rounded-full bg-accent shrink-0" />
+                    <p className="text-muted-foreground leading-relaxed text-sm md:text-base">{p}</p>
+                  </motion.div>
                 ))}
-              </motion.div>
+              </div>
+
+              {/* Bottom accent strip */}
+              <div className="mt-8 pt-6 border-t border-border/50 flex items-center gap-3 relative z-10">
+                <CheckCircle2 size={18} className="text-accent" />
+                <span className="text-sm font-medium text-accent">
+                  {language === "fr" ? "Enregistré & Certifié au Rwanda" : language === "rw" ? "Byanditswe & Byemejwe mu Rwanda" : "Registered & Certified in Rwanda"}
+                </span>
+              </div>
             </motion.div>
 
-            {/* Founder Quote Card */}
+            {/* RIGHT — founder card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative"
+              className="relative flex flex-col gap-6"
             >
-              <div className="bg-secondary rounded-2xl p-8 relative">
-                <Quote size={48} className="text-accent/20 absolute top-4 left-4" />
+              {/* Founder photo + quote */}
+              <div className="relative gradient-navy rounded-2xl overflow-hidden flex-1 p-8 md:p-10 flex flex-col justify-between text-primary-foreground">
+                {/* Large decorative quote */}
+                <Quote size={80} className="text-accent/10 absolute -top-2 -right-2 rotate-180" />
+
                 <div className="relative z-10">
-                  <p className="text-lg md:text-xl font-display italic leading-relaxed mb-6 pl-8">
+                  <p className="font-display text-lg md:text-xl italic leading-relaxed text-primary-foreground/90 mb-8">
                     "{founderQuote}"
                   </p>
-                  <div className="flex items-center gap-4 pl-8">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-accent shadow-lg shadow-accent/20">
                       <img src={stevenPhoto} alt="Steven M." className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <div className="font-display font-bold">Steven M.</div>
-                      <div className="text-accent text-sm">{t.team.members[0].role}</div>
+                      <div className="font-display font-bold text-lg">Steven M.</div>
+                      <div className="text-accent text-sm font-medium">{t.team.members[0].role}</div>
+                      <div className="text-primary-foreground/40 text-xs mt-0.5">Tax Care Hub — Kigali, Rwanda</div>
                     </div>
                   </div>
                 </div>
+
+                {/* Bottom gold line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 gradient-gold" />
+              </div>
+
+              {/* Mini achievement badges */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { value: "500+", label: language === "fr" ? "Clients" : language === "rw" ? "Abakiliya" : "Clients Served" },
+                  { value: "98%", label: language === "fr" ? "Satisfaction" : language === "rw" ? "Ibyishimo" : "Satisfaction Rate" },
+                  { value: "4+", label: language === "fr" ? "Ans d'Exp." : language === "rw" ? "Imyaka" : "Years of Exp." },
+                  { value: "RRA", label: language === "fr" ? "Partenaire Certifié" : language === "rw" ? "Wanditswe" : "Certified Partner" },
+                ].map((badge, i) => (
+                  <motion.div
+                    key={i}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className="bg-secondary border border-border/50 hover:border-accent/30 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="font-display text-2xl font-bold text-accent">{badge.value}</div>
+                    <div className="text-muted-foreground text-xs mt-1">{badge.label}</div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>
@@ -216,21 +273,88 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline / Journey Section */}
-      <section className="section-padding bg-card">
-        <div className="container-narrow">
+      {/* Timeline / Journey Section - Advanced Design */}
+      <section className="section-padding bg-card relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+        </div>
+
+        <div className="container-narrow relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
-            <p className="text-accent font-semibold uppercase tracking-widest text-sm mb-2">{t.about.journeyBadge}</p>
-            <h2 className="font-display text-3xl md:text-4xl font-bold">{t.about.journeyTitle}</h2>
+            <span className="inline-block bg-accent/10 border border-accent/20 text-accent font-semibold uppercase tracking-widest text-xs px-5 py-2 rounded-full mb-4">
+              {t.about.journeyBadge}
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">{t.about.journeyTitle}</h2>
+            <p className="text-muted-foreground max-w-lg mx-auto">
+              {language === "fr" 
+                ? "Découvrez notre parcours de croissance et d'innovation" 
+                : language === "rw" 
+                ? "Menya urugendo rwacu rwo gukura no guhanga udushya" 
+                : "Follow our path of growth and innovation over the years"}
+            </p>
           </motion.div>
-          <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
-            <div className="space-y-10">
+
+          {/* Desktop: Horizontal timeline */}
+          <div className="hidden lg:block relative">
+            {/* Central horizontal line */}
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent -translate-y-1/2" />
+            
+            <div className="grid grid-cols-4 gap-6">
+              {t.about.milestones.map((m, i) => {
+                const isTop = i % 2 === 0;
+                return (
+                  <motion.div
+                    key={m.year}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className={`relative flex flex-col ${isTop ? "items-center" : "items-center flex-col-reverse"}`}
+                  >
+                    {/* Card */}
+                    <motion.div
+                      whileHover={{ scale: 1.03, y: isTop ? -6 : 6 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className={`w-full bg-secondary border border-border/50 rounded-2xl p-6 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5 transition-all duration-500 ${isTop ? "mb-6" : "mt-6"}`}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-lg gradient-gold flex items-center justify-center">
+                          <span className="text-primary font-bold text-sm">{m.year.slice(-2)}</span>
+                        </div>
+                        <div className="h-px flex-1 bg-border" />
+                      </div>
+                      <h3 className="font-display text-base font-bold mb-2 leading-tight">{m.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{m.desc}</p>
+                    </motion.div>
+
+                    {/* Connector line */}
+                    <div className={`w-0.5 h-8 bg-accent/30 ${isTop ? "order-last" : "order-first"}`} />
+
+                    {/* Center dot */}
+                    <div className="relative z-10">
+                      <div className="w-5 h-5 rounded-full gradient-gold shadow-lg shadow-accent/30" />
+                      <div className="absolute inset-0 w-5 h-5 rounded-full gradient-gold animate-ping opacity-20" />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile/Tablet: Vertical timeline */}
+          <div className="lg:hidden relative">
+            {/* Vertical line */}
+            <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent/50 via-accent/30 to-accent/50" />
+
+            <div className="space-y-8">
               {t.about.milestones.map((m, i) => (
                 <motion.div
                   key={m.year}
@@ -239,25 +363,48 @@ const About = () => {
                   whileInView="visible"
                   viewport={{ once: true }}
                   variants={fadeUp}
-                  className={`relative flex items-start gap-6 ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
+                  className="relative flex items-start gap-6 pl-2"
                 >
-                  <div className="hidden md:block md:w-1/2" />
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full gradient-gold flex items-center justify-center z-10 shadow-lg">
-                    <span className="text-primary font-bold text-xs">{m.year.slice(-2)}</span>
+                  {/* Year badge */}
+                  <div className="relative z-10 shrink-0">
+                    <div className="w-10 h-10 rounded-full gradient-gold flex items-center justify-center shadow-lg shadow-accent/20">
+                      <span className="text-primary font-bold text-xs">{m.year.slice(-2)}</span>
+                    </div>
                   </div>
+
+                  {/* Card */}
                   <motion.div
-                    whileHover={{ scale: 1.02, y: -4 }}
+                    whileHover={{ scale: 1.02, x: 4 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className="ml-14 md:ml-0 md:w-1/2 bg-card p-6 rounded-xl border border-border/50 shadow-sm hover:shadow-xl hover:border-accent/30 transition-all duration-300"
+                    className="flex-1 bg-secondary border border-border/50 rounded-xl p-5 hover:border-accent/40 hover:shadow-lg transition-all duration-300"
                   >
-                    <span className="text-accent font-bold text-sm">{m.year}</span>
-                    <h3 className="font-display text-lg font-semibold mt-1">{m.title}</h3>
-                    <p className="text-muted-foreground text-sm mt-2 leading-relaxed">{m.desc}</p>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-accent font-bold text-sm">{m.year}</span>
+                      <div className="w-8 h-0.5 bg-accent/30" />
+                    </div>
+                    <h3 className="font-display text-lg font-semibold mb-2">{m.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{m.desc}</p>
                   </motion.div>
                 </motion.div>
               ))}
             </div>
           </div>
+
+          {/* Future indicator */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <div className="inline-flex items-center gap-3 bg-accent/10 border border-accent/20 px-6 py-3 rounded-full">
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <span className="text-accent font-medium text-sm">
+                {language === "fr" ? "Et l'aventure continue..." : language === "rw" ? "Kandi urugendo rurakomeje..." : "And the journey continues..."}
+              </span>
+              <ArrowRight size={16} className="text-accent" />
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -296,63 +443,6 @@ const About = () => {
                 </motion.div>
               );
             })}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="section-padding bg-secondary">
-        <div className="container-narrow">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 bg-accent/10 px-4 py-1.5 rounded-full mb-4">
-              <Users size={16} className="text-accent" />
-              <span className="text-accent font-semibold uppercase tracking-widest text-xs">{t.team.badge}</span>
-            </div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              {t.team.title1} <span className="text-gradient-gold">{t.team.titleHighlight}</span>
-            </h2>
-            <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto">{t.team.desc}</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="group relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/40 transition-all duration-500 hover:shadow-xl hover:-translate-y-2"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  {member.photo ? (
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className="w-full h-full gradient-navy flex items-center justify-center">
-                      <span className="text-primary-foreground font-display font-bold text-4xl opacity-80">
-                        {member.name.split(" ").map((n) => n[0]).join("")}
-                      </span>
-                    </div>
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-card to-transparent" />
-                </div>
-                <div className="p-5 text-center">
-                  <h3 className="font-display text-lg font-bold mb-1">{member.name}</h3>
-                  <p className="text-accent text-sm font-semibold mb-2">{member.role}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{member.desc}</p>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
