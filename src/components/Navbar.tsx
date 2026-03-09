@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import taxcareLogo from "@/assets/taxcare-logo.jpeg";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
+import SearchDialog from "@/components/SearchDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +15,7 @@ import {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
   const { language, setLanguage, t, languageLabels } = useLanguage();
@@ -66,7 +68,14 @@ const Navbar = () => {
             </Link>
           )}
 
-
+          {/* Search Button */}
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="ml-2 flex items-center gap-1.5 px-3 py-2 rounded-md text-primary-foreground/70 hover:text-primary-foreground transition-colors border border-primary-foreground/20 hover:border-primary-foreground/40"
+            aria-label="Search"
+          >
+            <Search size={18} />
+          </button>
           {/* Language Selector */}
           <DropdownMenu>
             <DropdownMenuTrigger className="ml-auto mr-4 flex items-center gap-1.5 px-3 py-2 rounded-md text-primary-foreground/70 hover:text-primary-foreground transition-colors border border-primary-foreground/20 hover:border-primary-foreground/40">
@@ -148,6 +157,8 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </header>
   );
 };

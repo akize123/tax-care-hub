@@ -9,6 +9,7 @@ export const en = {
     contact: "Contact Us",
     dashboard: "Dashboard",
     login: "Login",
+    search: "Search pages & services...",
   },
 
   // Hero

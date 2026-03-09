@@ -8,6 +8,7 @@ export const fr = {
     contact: "Contactez-nous",
     dashboard: "Tableau de bord",
     login: "Connexion",
+    search: "Rechercher pages et services...",
   },
 
   hero: {
