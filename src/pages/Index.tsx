@@ -30,24 +30,50 @@ const Index = () => {
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !email || !comment) return;
+    if (!fullName || !email || !comment) {
+      toast({ title: "Missing Fields", description: "Please fill in all fields", variant: "destructive" });
+      return;
+    }
     setLoading(true);
 
-    const { error } = await supabase.from("contact_messages").insert({
-      full_name: fullName, email, message: comment, source: "homepage",
-    });
-    if (error) console.error("DB error:", error);
+    try {
+      // Save to database
+      const { error: dbError } = await supabase.from("contact_messages").insert({
+        full_name: fullName, email, message: comment, source: "homepage",
+      });
+      if (dbError) {
+        console.error("[v0] DB error:", dbError);
+        throw new Error(`Database error: ${dbError.message}`);
+      }
 
-    await supabase.functions.invoke("send-notification-email", {
-      body: {
-        type: "homepage",
-        data: { fullName, email, message: comment },
-      },
-    });
+      // Send email notification
+      const { data: emailData, error: emailError } = await supabase.functions.invoke("send-notification-email", {
+        body: {
+          type: "homepage",
+          data: { fullName, email, message: comment },
+        },
+      });
 
-    setLoading(false);
-    toast({ title: t.stayUpdated.successTitle, description: t.stayUpdated.successDesc });
-    setFullName(""); setEmail(""); setComment("");
+      if (emailError) {
+        console.error("[v0] Email error:", emailError);
+        throw new Error(`Email error: ${emailError.message}`);
+      }
+
+      console.log("[v0] Message sent successfully:", emailData);
+      toast({ title: t.stayUpdated.successTitle, description: t.stayUpdated.successDesc });
+      setFullName(""); 
+      setEmail(""); 
+      setComment("");
+    } catch (error) {
+      console.error("[v0] Full error:", error);
+      toast({ 
+        title: "Error Sending Message", 
+        description: error instanceof Error ? error.message : "An unexpected error occurred",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
