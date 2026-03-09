@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe, Search } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import taxcareLogo from "@/assets/taxcare-logo.jpeg";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
-import SearchDialog from "@/components/SearchDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,7 +14,6 @@ import {
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
   const { language, setLanguage, t, languageLabels } = useLanguage();
