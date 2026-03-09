@@ -111,53 +111,117 @@ const About = () => {
       </section>
 
       {/* Story Section with Founder Quote */}
-      <section className="section-padding bg-card">
+      <section className="section-padding bg-card overflow-hidden">
         <div className="container-narrow">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Section label */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="inline-block bg-accent/10 border border-accent/20 text-accent font-semibold uppercase tracking-widest text-xs px-5 py-2 rounded-full mb-4">
+              {language === "fr" ? "Notre Histoire" : language === "rw" ? "Inkuru Yacu" : "Our Story"}
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold">{t.about.storyTitle}</h2>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-10 items-stretch">
+            {/* LEFT — story paragraphs with decorated styling */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
+              className="relative bg-secondary rounded-2xl p-8 md:p-10 border border-border/50 flex flex-col justify-between"
             >
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">{t.about.storyTitle}</h2>
-              <motion.div
-                className="space-y-4 text-muted-foreground leading-relaxed"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={staggerContainer}
-              >
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 left-0 w-24 h-24 rounded-tl-2xl overflow-hidden pointer-events-none">
+                <div className="absolute -top-8 -left-8 w-24 h-24 gradient-gold opacity-20 rounded-full blur-xl" />
+              </div>
+
+              <div className="space-y-5 relative z-10">
                 {[t.about.storyP1, t.about.storyP2, t.about.storyP3, t.about.storyP4].map((p, i) => (
-                  <motion.p key={i} variants={fadeUp} custom={i}>{p}</motion.p>
+                  <motion.div
+                    key={i}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className="flex gap-4 items-start"
+                  >
+                    <div className="mt-1.5 w-2 h-2 rounded-full bg-accent shrink-0" />
+                    <p className="text-muted-foreground leading-relaxed text-sm md:text-base">{p}</p>
+                  </motion.div>
                 ))}
-              </motion.div>
+              </div>
+
+              {/* Bottom accent strip */}
+              <div className="mt-8 pt-6 border-t border-border/50 flex items-center gap-3 relative z-10">
+                <CheckCircle2 size={18} className="text-accent" />
+                <span className="text-sm font-medium text-accent">
+                  {language === "fr" ? "Enregistré & Certifié au Rwanda" : language === "rw" ? "Byanditswe & Byemejwe mu Rwanda" : "Registered & Certified in Rwanda"}
+                </span>
+              </div>
             </motion.div>
 
-            {/* Founder Quote Card */}
+            {/* RIGHT — founder card */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative"
+              className="relative flex flex-col gap-6"
             >
-              <div className="bg-secondary rounded-2xl p-8 relative">
-                <Quote size={48} className="text-accent/20 absolute top-4 left-4" />
+              {/* Founder photo + quote */}
+              <div className="relative gradient-navy rounded-2xl overflow-hidden flex-1 p-8 md:p-10 flex flex-col justify-between text-primary-foreground">
+                {/* Large decorative quote */}
+                <Quote size={80} className="text-accent/10 absolute -top-2 -right-2 rotate-180" />
+
                 <div className="relative z-10">
-                  <p className="text-lg md:text-xl font-display italic leading-relaxed mb-6 pl-8">
+                  <p className="font-display text-lg md:text-xl italic leading-relaxed text-primary-foreground/90 mb-8">
                     "{founderQuote}"
                   </p>
-                  <div className="flex items-center gap-4 pl-8">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
+
+                  {/* Author */}
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-accent shadow-lg shadow-accent/20">
                       <img src={stevenPhoto} alt="Steven M." className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <div className="font-display font-bold">Steven M.</div>
-                      <div className="text-accent text-sm">{t.team.members[0].role}</div>
+                      <div className="font-display font-bold text-lg">Steven M.</div>
+                      <div className="text-accent text-sm font-medium">{t.team.members[0].role}</div>
+                      <div className="text-primary-foreground/40 text-xs mt-0.5">Tax Care Hub — Kigali, Rwanda</div>
                     </div>
                   </div>
                 </div>
+
+                {/* Bottom gold line */}
+                <div className="absolute bottom-0 left-0 right-0 h-1 gradient-gold" />
+              </div>
+
+              {/* Mini achievement badges */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { value: "500+", label: language === "fr" ? "Clients" : language === "rw" ? "Abakiliya" : "Clients Served" },
+                  { value: "98%", label: language === "fr" ? "Satisfaction" : language === "rw" ? "Ibyishimo" : "Satisfaction Rate" },
+                  { value: "4+", label: language === "fr" ? "Ans d'Exp." : language === "rw" ? "Imyaka" : "Years of Exp." },
+                  { value: "RRA", label: language === "fr" ? "Partenaire Certifié" : language === "rw" ? "Wanditswe" : "Certified Partner" },
+                ].map((badge, i) => (
+                  <motion.div
+                    key={i}
+                    custom={i}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className="bg-secondary border border-border/50 hover:border-accent/30 rounded-xl p-4 text-center hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="font-display text-2xl font-bold text-accent">{badge.value}</div>
+                    <div className="text-muted-foreground text-xs mt-1">{badge.label}</div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </div>
