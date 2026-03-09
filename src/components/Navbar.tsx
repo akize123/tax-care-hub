@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, Search } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import taxcareLogo from "@/assets/taxcare-logo.jpeg";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
+import SearchDialog from "@/components/SearchDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
