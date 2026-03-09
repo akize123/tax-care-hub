@@ -8,6 +8,7 @@ export const rw = {
     contact: "Twandikire",
     dashboard: "Ikibaho",
     login: "Kwinjira",
+    search: "Shakisha paji n'serivisi...",
   },
 
   hero: {
