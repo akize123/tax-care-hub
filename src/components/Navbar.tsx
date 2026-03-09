@@ -129,6 +129,12 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+              <BookingDialog>
+                <button className="mt-2 px-5 py-3 rounded-md text-sm font-semibold border border-accent text-accent text-center flex items-center justify-center gap-2">
+                  <CalendarCheck size={16} />
+                  {t.booking.title}
+                </button>
+              </BookingDialog>
               <Link
                 to={user ? "/dashboard" : "/login"}
                 onClick={() => setOpen(false)}
