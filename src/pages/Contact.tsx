@@ -38,9 +38,19 @@ const Contact = () => {
     });
     if (error) console.error("DB error:", error);
 
-    const subject = encodeURIComponent(`Contact from ${form.firstName} ${form.lastName}`);
-    const body = encodeURIComponent(`Name: ${form.firstName} ${form.lastName}\nEmail: ${form.email}\nPhone: ${form.phone}\nCountry: ${form.country}\n\nMessage:\n${form.message}`);
-    window.open(`mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    await supabase.functions.invoke("send-notification-email", {
+      body: {
+        type: "contact",
+        data: {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          email: form.email,
+          phone: form.phone,
+          country: form.country,
+          message: form.message,
+        },
+      },
+    });
 
     setLoading(false);
     setSubmitted(true);
