@@ -30,32 +30,57 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!form.firstName || !form.lastName || !form.email || !form.message) {
+      toast({ title: "Missing Fields", description: "Please fill in all required fields", variant: "destructive" });
+      return;
+    }
     setLoading(true);
 
-    const { error } = await supabase.from("contact_messages").insert({
-      full_name: `${form.firstName} ${form.lastName}`, email: form.email,
-      phone: form.phone || null, country: form.country || null, message: form.message, source: "contact",
-    });
-    if (error) console.error("DB error:", error);
+    try {
+      // Save to database
+      const { error: dbError } = await supabase.from("contact_messages").insert({
+        full_name: `${form.firstName} ${form.lastName}`, email: form.email,
+        phone: form.phone || null, country: form.country || null, message: form.message, source: "contact",
+      });
+      if (dbError) {
+        console.error("[v0] DB error:", dbError);
+        throw new Error(`Database error: ${dbError.message}`);
+      }
+      console.log("[v0] Message saved to database");
 
-    await supabase.functions.invoke("send-notification-email", {
-      body: {
-        type: "contact",
-        data: {
-          firstName: form.firstName,
-          lastName: form.lastName,
-          email: form.email,
-          phone: form.phone,
-          country: form.country,
-          message: form.message,
+      // Send email notification
+      const { data: emailData, error: emailError } = await supabase.functions.invoke("send-notification-email", {
+        body: {
+          type: "contact",
+          data: {
+            firstName: form.firstName,
+            lastName: form.lastName,
+            email: form.email,
+            phone: form.phone,
+            country: form.country,
+            message: form.message,
+          },
         },
-      },
-    });
+      });
+      if (emailError) {
+        console.error("[v0] Email error:", emailError);
+        throw new Error(`Email error: ${emailError.message}`);
+      }
+      console.log("[v0] Email sent successfully:", emailData);
 
-    setLoading(false);
-    setSubmitted(true);
-    toast({ title: t.contact.toastTitle, description: t.contact.toastDesc });
-    setTimeout(() => { setSubmitted(false); setForm({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" }); }, 4000);
+      setLoading(false);
+      setSubmitted(true);
+      toast({ title: t.contact.toastTitle, description: t.contact.toastDesc });
+      setTimeout(() => { setSubmitted(false); setForm({ firstName: "", lastName: "", email: "", phone: "", country: "", message: "" }); }, 4000);
+    } catch (error) {
+      console.error("[v0] Full error:", error);
+      setLoading(false);
+      toast({ 
+        title: "Error Sending Message", 
+        description: error instanceof Error ? error.message : "An unexpected error occurred",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
