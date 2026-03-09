@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Globe } from "lucide-react";
+import { Menu, X, Globe, CalendarCheck } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import taxcareLogo from "@/assets/taxcare-logo.jpeg";
 import { useAuth } from "@/hooks/useAuth";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
+import BookingDialog from "@/components/BookingDialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -50,17 +51,23 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
+          <BookingDialog>
+            <button className="ml-2 px-5 py-2.5 rounded-md text-lg font-semibold border border-accent text-accent hover:bg-accent/10 transition-colors flex items-center gap-2">
+              <CalendarCheck size={18} />
+              {t.booking.title}
+            </button>
+          </BookingDialog>
           {user ? (
             <Link
               to="/dashboard"
-              className="ml-3 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+              className="ml-2 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
             >
               {t.nav.dashboard}
             </Link>
           ) : (
             <Link
               to="/login"
-              className="ml-3 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
+              className="ml-2 px-6 py-2.5 rounded-md text-lg font-semibold gradient-gold text-primary transition-opacity hover:opacity-90"
             >
               {t.nav.login}
             </Link>
@@ -122,6 +129,12 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
+              <BookingDialog>
+                <button className="mt-2 px-5 py-3 rounded-md text-sm font-semibold border border-accent text-accent text-center flex items-center justify-center gap-2">
+                  <CalendarCheck size={16} />
+                  {t.booking.title}
+                </button>
+              </BookingDialog>
               <Link
                 to={user ? "/dashboard" : "/login"}
                 onClick={() => setOpen(false)}
