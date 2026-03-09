@@ -1,73 +1,89 @@
-# Welcome to your Lovable project
+                   TaxCare Declaration System
 
-## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+#==================Introduction=================================================
 
-## How can I edit this code?
+TaxCare Declaration System is a web-based platform designed to simplify tax declaration and financial compliance processes for individuals and businesses in Rwanda. The system provides services such as tax filing, tax advisory, bookkeeping, payroll management, and business registration support. It helps users manage their financial responsibilities efficiently while ensuring compliance with regulations.
 
-There are several ways of editing your application.
+================Objective=====================================================
 
-**Use Lovable**
+The main objective of this system is to provide a reliable digital platform that simplifies tax declaration and business compliance. The system helps reduce errors, improve accuracy, and ensure timely submission of tax information. It also supports better financial record management for businesses and individuals.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+# ====================Features==================================================
 
-Changes made via Lovable will be committed automatically to this repo.
+The system provides the following services:
 
-**Use your preferred IDE**
+Tax Declaration and Filing – Preparation and submission of tax returns.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Tax Advisory and Planning – Professional guidance on tax decisions.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Bookkeeping and Accounting Services – Management of financial records.
 
-Follow these steps:
+Business Registration Services – Assistance with RDB and RRA registration.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Tax Clearance and Compliance Support – Help in resolving tax issues and obtaining clearance certificates.
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Payroll Management – Salary calculation, PAYE, and RSSB processing.
 
-# Step 3: Install the necessary dependencies.
-npm i
+==============How It Works==============================================
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+Users create an account on the platform.
 
-**Edit a file directly in GitHub**
+They select the service they need.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Required documents and information are uploaded.
 
-**Use GitHub Codespaces**
+The system processes the request and prepares the necessary documentation.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The service is completed while ensuring compliance with tax regulations.
 
-## What technologies are used for this project?
+===================Technologies Used==================================
 
-This project is built with:
+The system is built using modern web technologies such as:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+Frontend: HTML, CSS, JavaScript
 
-## How can I deploy this project?
+Backend: (Node.js / PHP / Django — depending on what you used)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+Database: MySQL / PostgreSQL
 
-## Can I connect a custom domain to my Lovable project?
+Version Control: Git and GitHub
 
-Yes, you can!
+=================Installation========================================
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+To run the project locally:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Clone the repository
+
+git clone https://github.com/yourusername/taxcare-declaration-system.git
+
+Navigate to the project folder
+
+cd taxcare-declaration-system
+
+Install dependencies (if required)
+
+npm install
+
+Run the project
+
+npm start
+Usage
+
+After running the system, users can register, select services, upload documents, and manage their tax-related processes through the platform.
+
+==================Future Improvements===================================
+
+Integration with tax authority systems
+
+Automated tax calculations
+
+Secure document storage
+
+Mobile-friendly interface
+
+Author
+
+Developed by:
+IRABARUTA STEVEN, AND 
+AKIZE ISRAEL
