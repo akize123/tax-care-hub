@@ -34,9 +34,18 @@ const BookingDialog = ({ children }: { children: React.ReactNode }) => {
       if (error) console.error("DB error:", error);
     }
 
-    const subject = encodeURIComponent(`New Service Booking from ${firstName} ${lastName}`);
-    const body = encodeURIComponent(`Name: ${firstName} ${lastName}\nEmail: ${email}\nPhone: ${phone}\nService: ${service || "Tax Declaration"}`);
-    window.open(`mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    await supabase.functions.invoke("send-notification-email", {
+      body: {
+        type: "booking",
+        data: {
+          firstName,
+          lastName,
+          email,
+          phone,
+          service: service || "Tax Declaration",
+        },
+      },
+    });
 
     setSubmitted(true);
     setLoading(false);

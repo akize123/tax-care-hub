@@ -35,9 +35,12 @@ const Index = () => {
     });
     if (error) console.error("DB error:", error);
 
-    const subject = encodeURIComponent(`Message from ${fullName}`);
-    const body = encodeURIComponent(`Name: ${fullName}\nEmail: ${email}\n\nMessage:\n${comment}`);
-    window.open(`mailto:akizeisrael123@gmail.com?subject=${subject}&body=${body}`, "_blank");
+    await supabase.functions.invoke("send-notification-email", {
+      body: {
+        type: "homepage",
+        data: { fullName, email, message: comment },
+      },
+    });
 
     setLoading(false);
     toast({ title: t.stayUpdated.successTitle, description: t.stayUpdated.successDesc });
