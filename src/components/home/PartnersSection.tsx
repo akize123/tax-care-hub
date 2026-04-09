@@ -2,14 +2,20 @@ import { motion } from "framer-motion";
 import { Handshake } from "lucide-react";
 import { fadeUp } from "@/lib/animations";
 import { useLanguage } from "@/contexts/LanguageContext";
+import rraLogo from "@/assets/partners/rra-logo.png";
+import bkLogo from "@/assets/partners/bk-logo.png";
+import imBankLogo from "@/assets/partners/im-bank-logo.png";
+import equityBankLogo from "@/assets/partners/equity-bank-logo.png";
+import bkTechouseLogo from "@/assets/partners/bk-techouse-logo.png";
+import rdbLogo from "@/assets/partners/rdb-logo.png";
 
 const partners = [
-  { name: "Rwanda Revenue Authority", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Rwanda_Revenue_Authority_logo.png/220px-Rwanda_Revenue_Authority_logo.png" },
-  { name: "Bank of Kigali", logo: "https://images.seeklogo.com/logo-png/52/1/bank-of-kigali-logo-png_seeklogo-524654.png" },
-  { name: "I&M Bank", logo: "https://images.seeklogo.com/logo-png/43/1/i-m-bank-logo-png_seeklogo-432553.png" },
-  { name: "Equity Bank", logo: "https://images.seeklogo.com/logo-png/31/2/equity-bank-logo-png_seeklogo-312498.png" },
-  { name: "BK TecHouse", logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGVYFpXqmUr1Q/company-logo_200_200/company-logo_200_200/0/1630475697498?e=2147483647&v=beta&t=placeholder" },
-  { name: "RDB", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/2/27/Rwanda_Development_Board_logo.png/250px-Rwanda_Development_Board_logo.png" },
+  { name: "Rwanda Revenue Authority", logo: rraLogo },
+  { name: "Bank of Kigali", logo: bkLogo },
+  { name: "I&M Bank", logo: imBankLogo },
+  { name: "Equity Bank", logo: equityBankLogo },
+  { name: "BK TecHouse", logo: bkTechouseLogo },
+  { name: "RDB", logo: rdbLogo },
 ];
 
 const PartnersSection = () => {
