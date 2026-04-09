@@ -130,9 +130,9 @@ const Index = () => {
               </h2>
               <div className="w-16 h-1 gradient-gold mb-5 rounded-full" />
               <p className="text-primary-foreground/60 leading-relaxed mb-4">{t.stayUpdated.desc}</p>
-              <div className="flex items-center gap-3 text-primary-foreground/50 text-sm mb-8">
+              <a href="https://mail.google.com/mail/?view=cm&to=akizeisrael123@gmail.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 text-primary-foreground/50 text-sm mb-8 hover:text-accent transition-colors">
                 <Send size={14} className="text-accent" /><span>akizeisrael123@gmail.com</span>
-              </div>
+              </a>
 
               {/* Social links */}
               <div>
